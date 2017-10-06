@@ -1,0 +1,23 @@
+.blog-nav-item {
+  margin-right: 10px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+body .container {
+  margin-top: 20px;
+}
+
+nav .container {
+  margin-top: 0px;
+}
+
+img {
+  margin-bottom: 50px;
+}
+
+body {
+  background-color: rgb(200,200,200);
+}

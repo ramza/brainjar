@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+  <div class="centerstage">
+      <h2>Gaspard</h2>
+    <img src="{% static "img/gaspard_3.png" %}"  class="img-fluid" alt="Image Missing">
+
+    <h2>Take up your father's sword and fight!</h2>
+    <p>Gaspard is a 2d side-stroller in the style of NES classics. Assuming the
+      roles of a masked highwayman, the player must slash their way through
+      dozens of worlds, slaying monsters and dodging traps in their quest for revenge.</p>
+    <p>Gaspard was created for the 2016 Indie Bits game Jam,
+      using the Godot Game engine. Other tools used include GIMP, Aseprite, and BFXR.net.
+    </p>
+
+    <p><a href="https://brainjar.itch.io/gaspard"><button type="button" class="btn btn-primary">Play</button></a></p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <a href="{% static 'img/gaspard_4.png' %}">
+          <img src="{% static "img/gaspard_4.png" %}" style="width:100%" alt="Image Missing"></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <a href="{% static 'img/gaspard_5.png' %}">
+          <img src="{% static "img/gaspard_5.png" %}" style="width:100%" alt="Image Missing"></a>
+        </div>
+      </div>
+
+      </div><!-- end row -->
+
+    <h2>Learn the secrets of your destiny.</h2>
+    <p>You're father was Gaspard, an infamous highway man who stole from the wealthy
+    and gave the loot to the poor. He was eventually gunned down, lured to his death
+    by the murder of his wife. You have returned from a long voyage and must fight
+    to avenge their deaths!</p>
+    <img src="{% static "img/gaspard_1.png" %}" class="img-fluid" alt="Image Missing">
+
+    <h2>Find those who will guide you.</h2>
+    <p>Throughout the land are those who would aid your journey. They will sell
+    you special items and give you hints to the truth behind your mask.</p>
+    <img src="{% static "img/gaspard_2.png" %}" class="img-fluid" alt="Image Missing">
+
+    <h2>Adventure through a magical kingdom.</h2>
+    <p>Journy through the portals to find your way to your prey, the evil Lord
+    who killed your parents. With your father's rapier, you must get your revenge!</p>
+
+
+  </div> <!-- end container -->
+{% endblock %}

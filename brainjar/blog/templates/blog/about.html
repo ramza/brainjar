@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+  <h3>About Brain Jar</h3>
+  <p>We're an independent game development company focused on making unique
+     and exciting games.</p>
+     <img src="{%static 'img/neo_brain.png' %}" alt="">
+  <p>We're currently hard at work on our latest creation:
+    <a href="{% url 'the-mad-gear' %}">The Mad Gear</a>. It follows a rock background
+    as they fight their way through a comical cast of Turbo Cities roughest foes.
+    Coming soon for PC, Mac, and Linux operating systems.</p>
+    <div class="blog-post">
+      <h4>In-house software</h4>
+      <ol class="list-unstyled">
+        <li><a href="https://godotengine.org/">Godot</a></li>
+        <li><a href="https://www.aseprite.org/">Aseprite</a></li>
+        <li><a href="https://unity3d.com/">Unity</a></li>
+        <li><a href="https://git-scm.com/">Git</a></li>
+        <li><a href="https://www.blender.org/">Blender</a></li>
+      </ol>
+    </div>
+{% endblock %}
