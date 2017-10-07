@@ -3,15 +3,33 @@
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
-body .container {
-  margin-top: 20px;
+h2, h3 {
+  font-family: 'Quantico', sans-serif;
+  /*font-family: 'Exo 2', sans-serif;*/
+  margin-top: 10px;
 }
-
-nav .container {
+p {
+    font-family: 'Hind Guntur', sans-serif;
+}
+nav {
+  font-family: 'Quantico', sans-serif;
+  /*font-family: 'Exo 2', sans-serif;*/
+  font-size: 1.1em;
   margin-top: 0px;
+  padding-bottom: 10px;
+}
+
+.post {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.post button {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 img {
@@ -19,5 +37,7 @@ img {
 }
 
 body {
+  color: white;
   background-color: rgb(200,200,200);
+  background-image: url('/static/img/bricks.png')
 }

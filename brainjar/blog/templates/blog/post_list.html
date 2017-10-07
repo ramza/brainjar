@@ -1,12 +1,15 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-  <div class="container">
-
+  <div class="container post">
     <div class="blog-header">
       <h2 class="blog-title">News From Brain Jar</h2>
       <p class="lead blog-description">#indielife</p>
     </div>
+    
+    <img src="{% static "img/gaspard_1.png" %}"  class="img-fluid" alt="Image Missing">
+
+
     {% for post in post_list %}
       <div class="blog-post">
         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>

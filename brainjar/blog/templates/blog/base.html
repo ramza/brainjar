@@ -15,12 +15,11 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+    <!-- Custom fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:600|Quantico:700|Hind+Guntur|Press+Start+2P" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,8 +29,7 @@
   </head>
 
   <body>
-
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,16 +46,16 @@
           <li>
             <a class="nav-link" href="{% url 'tutorials' %}">Tutorials<span class="sr-only">(current)</span></a>
           </li>
-      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Games
-       </a>
-       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-         <a class="dropdown-item" href="{% url 'the-mad-gear' %}">The Mad Gear</a>
-         <a class="dropdown-item" href="{% url 'cosmic-trash' %}">Cosmic Trash</a>
-         <a class="dropdown-item" href="{% url 'gaspard' %}">Gaspard</a>
-       </div>
-     </li>
+          <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Games
+           </a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+             <a class="dropdown-item" href="{% url 'the-mad-gear' %}">The Mad Gear</a>
+             <a class="dropdown-item" href="{% url 'cosmic-trash' %}">Cosmic Trash</a>
+             <a class="dropdown-item" href="{% url 'gaspard' %}">Gaspard</a>
+           </div>
+         </li>
 
         </ul>
       </div>
@@ -65,7 +63,7 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container post">
 
       <div class="row">
 
@@ -83,6 +81,8 @@
             <a href="https://twitter.com/brainjargames">twitter.com/brainjargames</a>
             <hr>
             </div>
+
+            <img src="{% static "img/ninja.png" %}"  class="img-fluid" alt="Image Missing">
           <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
@@ -121,9 +121,6 @@
       </footer>
 
     </div><!-- /.container -->
-
-
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

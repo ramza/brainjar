@@ -20,7 +20,7 @@ class PostDetailView(DetailView):
     model = Post
 
 class TheMadGearView(TemplateView):
-    template_name = 'the_mad_gear.html'
+    template_name = 'the-mad-gear.html'
 
 class CosmicTrashView(TemplateView):
     template_name = 'cosmic-trash.html'
