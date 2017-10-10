@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" style="background-color: rgb(116, 71, 119);">
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -84,24 +84,15 @@
 
             <img src="{% static "img/ninja.png" %}"  class="img-fluid" alt="Image Missing">
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>Games</h4>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
+              <li><a href="{% url 'the-mad-gear' %}">The Mad Gear</a></li>
+              <li><a href="{% url 'cosmic-trash' %}">Cosmic Trash</a></li>
+              <li><a href="{% url 'gaspard' %}">Gaspard</a></li>
             </ol>
           </div>
           <div class="sidebar-module">
-            <h4>Elsewhere</h4>
+            <h4>Social</h4>
             <ol class="list-unstyled">
               <li><a href="#">GitHub</a></li>
               <li><a href="#">Reddit</a></li>
