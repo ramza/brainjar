@@ -31,10 +31,17 @@ nav {
 .post {
     padding-bottom: 20px;
     padding-top: 20px;
-    background-color: rgba(68, 58, 66, 0.8);
+    background-color: rgba(60, 58, 75, 0.8);
 }
 
-.post a {
+.sidebar-module {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(60, 58, 75, 0.8);
+}
+
+a {
   color: rgb(107, 255, 235);
 }
 
@@ -47,8 +54,12 @@ nav {
 
 }
 
-img {
+.blog-main img {
   margin-bottom: 50px;
+}
+
+.logo {
+  text-align: center;
 }
 
 body {
@@ -58,4 +69,8 @@ body {
 
 .footer {
     margin-top: 100px;
+}
+
+.blog-main {
+  margin-right: 30px;
 }
