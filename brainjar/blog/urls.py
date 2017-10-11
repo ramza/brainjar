@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^cosmic-trash/$', views.CosmicTrashView.as_view(), name='cosmic-trash'),
     url(r'^gaspard/$', views.GaspardView.as_view(), name='gaspard'),
     url(r'^tutorials/$', views.TutorialsView.as_view(), name='tutorials'),
+    url(r'^breakout/$', views.BreakOutView.as_view(), name='breakout'),
+
 ]

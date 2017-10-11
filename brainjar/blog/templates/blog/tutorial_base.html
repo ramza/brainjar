@@ -29,16 +29,14 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" style="background-color: rgb(65, 72, 73);">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" style="background-color: rgb(116, 71, 119);">
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="container">
-      <a class="navbar-brand" href="{% url 'post-list' %}">
-            <img src="{% static 'img/logo_small.png' %}" width="50" height="50" class='d-inline-block' alt="">
-            Brain Jar
-      </a>
+
+      <a class="navbar-brand" href="{% url 'post-list' %}">Brain Jar</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -63,50 +61,12 @@
       </div>
     </div>
     </nav>
+    <div class="container">
+      {% block body_block %}
+      {% endblock %}
+    </div>
 
-
-    <div class="container post">
-
-      <div class="row row-one">
-
-        <div class="col-sm-8 blog-main">
-
-          {% block body_block %}
-          {% endblock %}
-
-        </div><!-- /.blog-main -->
-
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>Bio</h4>
-            <p>A US based gamedev studio making experimental games.</p>
-            <a href="https://twitter.com/brainjargames">twitter.com/brainjargames</a>
-            <hr>
-            </div>
-
-            <img src="{% static "img/ninja.png" %}"  class="img-fluid" alt="Image Missing">
-          <div class="sidebar-module">
-            <h4>Games</h4>
-            <ol class="list-unstyled">
-              <li><a href="{% url 'the-mad-gear' %}">The Mad Gear</a></li>
-              <li><a href="{% url 'cosmic-trash' %}">Cosmic Trash</a></li>
-              <li><a href="{% url 'gaspard' %}">Gaspard</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Social</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Reddit</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
-
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-      <footer class="blog-footer footer">
+      <footer class="blog-footer">
         <p>Brain Jar Games 2017. Follow us on <a href="https://twitter.com/brainjargames">Twitter</a>.</p>
         <p>
           <a href="#">Back to top</a>

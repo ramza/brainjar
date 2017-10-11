@@ -30,3 +30,6 @@ class GaspardView(TemplateView):
 
 class TutorialsView(TemplateView):
     template_name = 'tutorials.html'
+
+class BreakOutView(TemplateView):
+    template_name = 'breakout.html'

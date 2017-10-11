@@ -1,0 +1,96 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+<h2>Godot Game Engine Tutorial</h2>
+
+<img src="https://raw.githubusercontent.com/godotengine/godot/master/icon.png" alt="">
+<h3>Breakout Tutorial</h3>
+<p>If you haven't already done so, hop over to
+<a href="https://godotengine.org/">godotengine.org</a> page and download
+the Godot engine. I'm currently using version 2.1.4. If you're using Godot 3.0, I can't
+promise that everything will be the same.</p>
+
+<p>Open the Godot Engine and make a new project. I'm going to call
+mine 'breakout'. Save the project to somewhere on your computer.</p>
+
+<p>We land on a new, blank project. click the '2d' button in the top left
+to change to 2d view. This the scene view and right now its empty.
+Lets put in a node so that we can start building our game!</p>
+
+<a href="{% static 'img/breakout/1.png' %}"><img class="img-fluid" src="{% static 'img/breakout/1.png' %}" alt=""></a>
+
+<p>On the right hand side of the screen is the Scene manager. Click the plus sign
+to add a new node. Search for a 'Node2d' in the pop-up window and add it to the scene.
+You'll see that it appears in the scene manager. Double click on the node and
+rename it 'world'.</p>
+
+<a href="{% static 'img/breakout/2.png' %}"><img class="img-fluid" src="{% static 'img/breakout/2.png' %}" alt=""></a>
+
+<p>Next I'm goign to add my image files tot eh project. I'll do this in the explorer
+but just copying the ball.png, paddle.png, and brick.png files in the project directory
+on my computer.</p>
+
+<p>Right click the world node and add a new child node. Search for Rigidbody2D
+and add it. Rename the RigidBody2D node to 'ball' and then right click it to add
+a new child node. This time search for 'Sprite' and make sure it is a child of the
+ball. If you get the heirachry wrong, its not a problem. You can either drag and
+drop to reparent the node, or right click and select 'reparent' and find the correct
+parent node. In this case its our ball.</p>
+
+<a href="{% static 'img/breakout/3.png' %}"><img class="img-fluid" src="{% static 'img/breakout/3.png' %}" alt=""></a>
+
+<p>With the Sprite node selected, look at the Inspector View. Its below the Scene manager.
+Here we can edit the properties of our nodes. We need to set a texture so
+click the field next to the <strong>texture</strong> label and load the ball image. Click the small
+arrow to the right of the texture field and you'll go to a details page. Under the
+flags field, turn off filter and mipmaps. This will keep our image nice and crisp.</p>
+
+<p>Right click on the ball node and add a CollisionShape2D. In the inspector, Click
+the shape drop down and add a new RectangleShape2D. Then click the little arrow
+beside the filed and in the details page, set the 'Extends 'to 10 x 10 if its not already
+set.</p>
+
+<p>We need to change some properites on teh ball to get it moving.</p>
+
+<p>Set the Mass to 0.01 and the Weight to 0.1, the friction to 0, and the bounce to 1. Lastly,
+scroll to Velocity and set the linear velocity to something like 200, 200.</p>
+
+<a href="{% static 'img/breakout/4.png' %}"><img class="img-fluid" src="{% static 'img/breakout/4.png' %}" alt=""></a>
+
+<p>Now is a good time to save our progress. Go to Scene and then Save Scene. I'm going to
+create a new folder called Scenes and another one called Scripts. Save my file as
+'world.tscn' which is the file format I like to use for my scenes. I'm going to
+scroll out so that I can see the game window boundaries (the purple lines). At
+the top of the scene editor you'll find a series of tools: the select tool, the
+move tool, and the rotation tool. Click the move tool (it looks like a cross)
+and then drag the ball into the middle of the screen.</p>
+
+<p>Now click on the Scenes button in the top left and go to project settings. In the
+projects settings panel, with the application tap selected, set the Main Scene field using the
+folder icon. Find 'world.tscn' in your project and select it.</p>
+
+<a href="{% static 'img/breakout/5.png' %}"><img class="img-fluid" src="{% static 'img/breakout/5.png' %}" alt=""></a>
+
+<p>Hit play and watch the ball fly off the screen.
+I think we need some walls to keep the ball from flying off the map.</p>
+
+<p>Right click on the world node and add a new StaticBody2D. In the inspector, set
+the frction of the staic body to 0 and the bounce to 1. Give a it a CollisionBody2D
+as a child node and. Use either the inspector tab or the selector tool to drag out the shape,
+You can use the little arrow by the input field to set the dimensions to seomtihng
+like 20x320. Name this shape wall_left. Snug the right edge of the wall against the
+vertical line of hte camera.</p>
+
+<p>Right clickt and selecto duplicate and drag teh wall to the other side of the screen.
+rename it wall_right. Duplicate another wall and this time rotate it 90 degrees
+using the inspector tab under the Transofrm section. Rename this as wall_top.
+duplicate it and drag it down to create wall_bottom.</p>
+
+<a href="{% static 'img/breakout/6.png' %}"><img class="img-fluid" src="{% static 'img/breakout/6.png' %}" alt=""></a>
+<a href="{% static 'img/breakout/7.png' %}"><img class="img-fluid" src="{% static 'img/breakout/7.png' %}" alt=""></a>
+
+
+<p>Now if you hit play, the ball will bounce around the screen. Not bad. And we
+haven't had to write any code yet. That's all about to change, next up is the paddle.</p>
+
+{% endblock %}

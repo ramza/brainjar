@@ -25,7 +25,7 @@ SECRET_KEY = '8lb5en#-ym)ewbqh)=1-ihqhl@lbm4$y^#9p1yw&sc3h$j=cl@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['raza.pythonanywhere.com','www.brainjargames.com']
+ALLOWED_HOSTS = ['raza.pythonanywhere.com','www.brainjargames.com','127.0.0.1']
 
 
 # Application definition
