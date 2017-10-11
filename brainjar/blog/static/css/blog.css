@@ -62,6 +62,10 @@ a {
   text-align: center;
 }
 
+.godot-code {
+  color: white;
+}
+
 body {
   color: white;
   background-image: url('/static/img/bricks.png')

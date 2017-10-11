@@ -10,5 +10,5 @@ urlpatterns = [
     url(r'^gaspard/$', views.GaspardView.as_view(), name='gaspard'),
     url(r'^tutorials/$', views.TutorialsView.as_view(), name='tutorials'),
     url(r'^breakout/$', views.BreakOutView.as_view(), name='breakout'),
-
+    url(r'^breakout2/$', views.BreakOut2View.as_view(), name='breakout2'),
 ]

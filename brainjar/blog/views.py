@@ -33,3 +33,6 @@ class TutorialsView(TemplateView):
 
 class BreakOutView(TemplateView):
     template_name = 'breakout.html'
+
+class BreakOut2View(TemplateView):
+    template_name = 'breakout2.html'

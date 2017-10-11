@@ -1,0 +1,120 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+<h2>Godot Game Engine Tutorial</h2>
+<h3>Breakout Tutorial</h3>
+<h4>Part 2</h4>
+<p>With the world node selected, click the plus icon and add a new node. This time
+choose KinematicBody2D and rename it to paddle. Right click it and add a two
+children: a Sprite and a StaticBody2D. Using the inspector, set the texture
+on the Sprite to paddle.png and then create a CollisionBody2D as a child of the
+StaticBody2D.</p>
+<a href="{% static 'img/breakout2/1.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/1.png' %}" alt=""></a>
+
+<p>Lastly, set a RectangleShape2D for the CollisionShape2D
+and use the selector to drag it into position. When you've finished, move it down
+to the bottom near the center of the view. On the StaticBody2D child of teh paddle,
+be sure to set the Friction to 0 and the Bounce to 1.</p>
+
+<a href="{% static 'img/breakout2/2.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/2.png' %}" alt=""></a>
+
+<p>Now we need to add a script to the paddle. Right click the paddle and choose
+'Attach Script'. Save it in the scripts folder and name it 'paddle.gd'.</p>
+
+<a href="{% static 'img/breakout2/3.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/3.png' %}" alt=""></a>
+
+
+<pre class="godot-code">
+  # paddle script
+  extends KinematicBody2D
+
+  var speed = 500;
+  # left or right on the x axis
+  var direction = 0
+
+  func _ready():
+  	set_process(true)
+
+  func _process(delta):
+  	# for calculating our movement velocity
+  	var motion = Vector2(0,0)
+
+  	# look for input with the left and right arrows
+  	var left = Input.is_action_pressed("ui_left")
+  	var right = Input.is_action_pressed("ui_right")
+  	# set the direction to move in
+  	if left:
+  		direction = -1
+  	elif right:
+  		direction = 1
+  	else:
+  		direction = 0
+  	# apply and move the body
+  	motion = Vector2(direction,0)*speed*delta
+  	move(motion)
+
+  	#find the screen boundaries and keep the paddle from escaping the edge
+  	var bounds = get_viewport().get_rect().size
+  	if get_global_pos().x > bounds.x-50:
+  		set_global_pos(Vector2(bounds.x-50,get_global_pos().y))
+  	elif get_global_pos().x < 50:
+  		set_global_pos(Vector2(50,get_global_pos().y))
+
+</pre>
+
+<p>alright so now we're finally writing code, and its a doozy right? Don't worry,
+this is the worst of it. Its actually very simple, we just look for input and then
+apply some motion with the move function every frame. If we get to near the edge
+of the map, the paddle is blocked from moving.</p>
+
+<p>Hit the play button and you'll be able to move the paddle and hit the ball back.
+Its time to make the bricks.</p>
+
+<a href="{% static 'img/breakout2/ball_paddle.gif' %}"><img class="img-fluid" src="{% static 'img/breakout2/ball_paddle.gif' %}" alt=""></a>
+
+<p>This process is going to be very similiar to the paddle object.
+Right click the world node and add a staticbody2d. Rename it brick be sure to set
+the Friction to 0 and the Bounce to 1.and then add
+a sprite node and a collisionshape2D. Set the texture on the sprite to the brick
+image and then set the collisionshape2d to have a rectangleshape2d. </p>
+
+<a href="{% static 'img/breakout2/4.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/4.png' %}" alt=""></a>
+
+
+<p>With the brick selected, add another node, this time an Area2D node. This node will look for
+physics bodies entering its space. add a collisionShape2d to define the shape, make sure
+its spills over the bricks actual collision. Next add a timer node as a child of the
+brick and set the wait time to 0.2. Finally, set the collision node on
+the area2d to be trigger.</p>
+<a href="{% static 'img/breakout2/5.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/5.png' %}" alt=""></a>
+
+
+<p>Now we need to add a script to brick. Right click the brick and "attack script."
+name it 'brick.gd' and save in teh scripts folder. Here is the code.</p>
+
+<a href="{% static 'img/breakout2/6.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/6.png' %}" alt=""></a>
+
+<a href="{% static 'img/breakout2/ball_paddle_brick.gif' %}"><img class="img-fluid" src="{% static 'img/breakout2/ball_paddle_brick.gif' %}" alt=""></a>
+
+<pre class="godot-code">
+  # brick script
+  extends StaticBody2D
+  # get the area2d node that is a child of this node
+  onready var area2d = get_node("Area2D")
+
+  func _ready():
+  	#connect the signal to a callback function
+  	area2d.connect("body_enter", self, "_on_brick_body_enter")
+
+  func _on_brick_body_enter(body):
+  	#if the ball hit the brick, destroy it
+  	if body.get_name() == "ball":
+  		queue_free()</pre>
+
+</pre>
+
+<p>Duplicate the brick a few times and try spreading some bricks around the level.
+See if you can destory them all.</p>
+
+<a href="{% url 'breakout' %}">Part One</a>
+{% endblock %}
