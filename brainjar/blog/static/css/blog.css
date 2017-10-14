@@ -23,6 +23,10 @@ p {
   color: lightblue;
 }
 
+h2 {
+  background-color: rgba(100,40,100,0.25);
+  padding: 5px;
+}
 nav {
   font-family: 'Quantico', sans-serif;
   /*font-family: 'Exo 2', sans-serif;*/
