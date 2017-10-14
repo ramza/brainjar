@@ -19,6 +19,10 @@ p {
     font-family: 'Hind Guntur', sans-serif;
 }
 
+.post strong {
+  color: lightblue;
+}
+
 nav {
   font-family: 'Quantico', sans-serif;
   /*font-family: 'Exo 2', sans-serif;*/

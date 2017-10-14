@@ -5,15 +5,15 @@
 <h3>Breakout Tutorial</h3>
 <h4>Part 2</h4>
 <p>With the world node selected, click the plus icon and add a new node. This time
-choose KinematicBody2D and rename it to paddle. Right click it and add a two
-children: a Sprite and a StaticBody2D. Using the inspector, set the texture
-on the Sprite to paddle.png and then create a CollisionBody2D as a child of the
+choose <strong>KinematicBody2D</strong> and rename it to 'paddle'. Right click it and add a two
+children: a <strong>Sprite</strong> and a <strong>StaticBody2D</strong>. Using the inspector, set the texture
+on the Sprite to paddle.png and then create a <strong>CollisionBody2D</strong> as a child of the
 StaticBody2D.</p>
 <a href="{% static 'img/breakout2/1.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/1.png' %}" alt=""></a>
 
-<p>Lastly, set a RectangleShape2D for the CollisionShape2D
+<p>Next, set a RectangleShape2D for the CollisionShape2D
 and use the selector to drag it into position. When you've finished, move it down
-to the bottom near the center of the view. On the StaticBody2D child of teh paddle,
+to the bottom near the center of the view. On the StaticBody2D child of the paddle,
 be sure to set the Friction to 0 and the Bounce to 1.</p>
 
 <a href="{% static 'img/breakout2/2.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/2.png' %}" alt=""></a>
@@ -62,10 +62,9 @@ be sure to set the Friction to 0 and the Bounce to 1.</p>
 
 </pre>
 
-<p>alright so now we're finally writing code, and its a doozy right? Don't worry,
-this is the worst of it. Its actually very simple, we just look for input and then
-apply some motion with the move function every frame. If we get to near the edge
-of the map, the paddle is blocked from moving.</p>
+<p>Alright so now we're finally writing code, and its a doozy right? We first look
+for input and then apply some motion with the <em>move</em> function every frame. If we
+get to the edge of the map, the paddle is blocked from moving.</p>
 
 <p>Hit the play button and you'll be able to move the paddle and hit the ball back.
 Its time to make the bricks.</p>
@@ -73,28 +72,25 @@ Its time to make the bricks.</p>
 <a href="{% static 'img/breakout2/ball_paddle.gif' %}"><img class="img-fluid" src="{% static 'img/breakout2/ball_paddle.gif' %}" alt=""></a>
 
 <p>This process is going to be very similiar to the paddle object.
-Right click the world node and add a staticbody2d. Rename it brick be sure to set
-the Friction to 0 and the Bounce to 1.and then add
-a sprite node and a collisionshape2D. Set the texture on the sprite to the brick
-image and then set the collisionshape2d to have a rectangleshape2d. </p>
+Right click the world node and add a <strong>StaticBody2D</strong>.
+Rename it brick and be sure to set the Friction to 0 and the Bounce to 1.and then add
+a sprite node and a CollisionShape2D. Set the texture on the sprite to the brick
+image and then set the CollisionShape2d to have a RectangleShape2D. </p>
 
 <a href="{% static 'img/breakout2/4.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/4.png' %}" alt=""></a>
 
 
 <p>With the brick selected, add another node, this time an Area2D node. This node will look for
-physics bodies entering its space. add a collisionShape2d to define the shape, make sure
-its spills over the bricks actual collision. Next add a timer node as a child of the
-brick and set the wait time to 0.2. Finally, set the collision node on
-the area2d to be trigger.</p>
+physics bodies entering its space. Add a CollisionShape2D to define the shape, make sure
+its spills over the bricks actual collision node a little. Next add a <strong>Timer</strong>
+node as a child of the brick and set the wait time to 0.2. Finally, set the collision node on
+the Area2D to be trigger.</p>
 <a href="{% static 'img/breakout2/5.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/5.png' %}" alt=""></a>
 
-
-<p>Now we need to add a script to brick. Right click the brick and "attack script."
-name it 'brick.gd' and save in teh scripts folder. Here is the code.</p>
+<p>Now we need to add a script to the brick. Right click the brick and choose
+"attack script." Name it 'brick.gd' and save in the scripts folder. Here is the code.</p>
 
 <a href="{% static 'img/breakout2/6.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/6.png' %}" alt=""></a>
-
-<a href="{% static 'img/breakout2/ball_paddle_brick.gif' %}"><img class="img-fluid" src="{% static 'img/breakout2/ball_paddle_brick.gif' %}" alt=""></a>
 
 <pre class="godot-code">
   # brick script
@@ -113,8 +109,9 @@ name it 'brick.gd' and save in teh scripts folder. Here is the code.</p>
 
 </pre>
 
-<p>Duplicate the brick a few times and try spreading some bricks around the level.
-See if you can destory them all.</p>
+<p>Duplicate the brick a few times and try placing some bricks around the level.
+See if you can break them all.</p>
+<a href="{% static 'img/breakout2/ball_paddle_brick.gif' %}"><img class="img-fluid" src="{% static 'img/breakout2/ball_paddle_brick.gif' %}" alt=""></a>
 
 <a href="{% url 'breakout' %}">Part One</a>
 {% endblock %}
