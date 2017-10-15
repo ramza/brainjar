@@ -5,16 +5,17 @@
 <h3>Breakout Tutorial</h3>
 <h4>Part 2</h4>
 <p>With the world node selected, click the plus icon and add a new node. This time
-choose <strong>KinematicBody2D</strong> and rename it to 'paddle'. Right click it and add a two
-children: a <strong>Sprite</strong> and a <strong>StaticBody2D</strong>. Using the inspector, set the texture
-on the Sprite to paddle.png and then create a <strong>CollisionBody2D</strong> as a child of the
-StaticBody2D.</p>
+choose <strong>KinematicBody2D</strong> and rename it to 'paddle'. Right click it and add two
+children; a <strong>Sprite</strong> and a <strong>StaticBody2D</strong>. Using the inspector,
+set the texture on the Sprite to paddle.png and then create a <strong>CollisionBody2D</strong>
+as a child of the StaticBody2D.</p>
 <a href="{% static 'img/breakout2/1.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/1.png' %}" alt=""></a>
 
-<p>Next, set a RectangleShape2D for the CollisionShape2D
-and use the selector to drag it into position. When you've finished, move it down
-to the bottom near the center of the view. On the StaticBody2D child of the paddle,
-be sure to set the Friction to 0 and the Bounce to 1.</p>
+<p>Next, set a <strong>RectangleShape2D</strong> for the CollisionShape2D
+and use the selector to drag the edges of the shape into position. When you've
+finished, move it down to the bottom near the center of the view. On the
+StaticBody2D child of the paddle, be sure to set the <strong>Friction</strong>
+to 0 and the <strong>Bounce</strong> to 1.</p>
 
 <a href="{% static 'img/breakout2/2.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/2.png' %}" alt=""></a>
 
@@ -62,9 +63,10 @@ be sure to set the Friction to 0 and the Bounce to 1.</p>
 
 </pre>
 
-<p>Alright so now we're finally writing code, and its a doozy right? We first look
-for input and then apply some motion with the <em>move</em> function every frame. If we
-get to the edge of the map, the paddle is blocked from moving.</p>
+<p>Alright so now we're finally writing code. First we look
+for input and then apply some motion with the <em>move</em> function every frame.
+Then we use get_global_pos() to find our screen coordiantes. If get to the edge
+of the map, the paddle is blocked from moving.</p>
 
 <p>Hit the play button and you'll be able to move the paddle and hit the ball back.
 Its time to make the bricks.</p>
@@ -73,18 +75,20 @@ Its time to make the bricks.</p>
 
 <p>This process is going to be very similiar to the paddle object.
 Right click the world node and add a <strong>StaticBody2D</strong>.
-Rename it brick and be sure to set the Friction to 0 and the Bounce to 1.and then add
-a sprite node and a CollisionShape2D. Set the texture on the sprite to the brick
-image and then set the CollisionShape2d to have a RectangleShape2D. </p>
+Rename it brick and be sure to set the Friction to 0 and the Bounce to 1. Then add
+a Sprite node and a CollisionShape2D. Set the texture on the Sprite to the brick.png
+image and then set the CollisionShape2D to have a RectangleShape2D. Drap the shape
+out to the edges of the image, but leave a little space so that the ball actually
+enters the image.</p>
 
 <a href="{% static 'img/breakout2/4.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/4.png' %}" alt=""></a>
 
-
-<p>With the brick selected, add another node, this time an Area2D node. This node will look for
-physics bodies entering its space. Add a CollisionShape2D to define the shape, make sure
-its spills over the bricks actual collision node a little. Next add a <strong>Timer</strong>
-node as a child of the brick and set the wait time to 0.2. Finally, set the collision node on
-the Area2D to be trigger.</p>
+<p>With the brick selected, add another node, this time an <strong>Area2D</strong> node.
+This node will look for physics bodies entering its space. Add a CollisionShape2D
+to define the shape, make sure its spills over the bricks actual collision node a
+little. Next add a <strong>Timer</strong> node as a child of the brick. Using the
+inspector, set the wait time of the timer node to 0.2. Finally, set the CollisionShape2D
+on the Area2D to be trigger.</p>
 <a href="{% static 'img/breakout2/5.png' %}"><img class="img-fluid" src="{% static 'img/breakout2/5.png' %}" alt=""></a>
 
 <p>Now we need to add a script to the brick. Right click the brick and choose
