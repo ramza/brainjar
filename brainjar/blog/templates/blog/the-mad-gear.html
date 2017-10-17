@@ -18,6 +18,16 @@
 
     <!-- Custom styles for this template -->
         <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108149916-1"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-108149916-1');
+    </script>
   </head>
   <body>
 
@@ -28,7 +38,10 @@
       </button>
       <div class="container">
 
-      <a class="navbar-brand" href="{% url 'post-list' %}">Brain Jar</a>
+        <a class="navbar-brand" href="{% url 'post-list' %}">
+              <img src="{% static 'img/logo_small.png' %}" width="50" height="50" class='d-inline-block' alt="">
+              Brain Jar
+        </a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">

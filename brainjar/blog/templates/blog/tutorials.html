@@ -1,5 +1,11 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 {% block body_block %}
 <h2>Tutorials</h2>
-<a href="{% url 'breakout' %}"><h3>Breakout</h3></a>
+
+<a href="{% url 'breakout' %}">
+  <img src="{% static 'img/breakout/breakout_thumbnail.png' %}" class="img-thumbnail
+  float-left tut-img" alt=""></a>
+<a href="{% url 'breakout' %}">
+  <h3 class="title">Breakout</h3></a>
 {% endblock %}
