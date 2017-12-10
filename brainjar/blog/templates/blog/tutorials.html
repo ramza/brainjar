@@ -1,11 +1,22 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-<h2>Tutorials</h2>
+  <h2>Tutorials</h2>
+  <h2> Godot 3.0</h2>
+  <a href="{% url 'game-of-life' %}">
+    <h3 class="title">Conway's Game of Life</h3>
+    <img src="{% static 'img/life/life_thumbnail.gif' %}" class="img-thumbnail
+     tut-img" alt="">
+  </a>
+  <h2>Godot 2.1.4</h2>
+  <a href="{% url 'breakout' %}">
+    <h3 class="title">Breakout</h3>
+    <img src="{% static 'img/breakout/breakout_thumbnail.png' %}" class="img-thumbnail
+     tut-img" alt="">
+  </a>
 
-<a href="{% url 'breakout' %}">
-  <img src="{% static 'img/breakout/breakout_thumbnail.png' %}" class="img-thumbnail
-  float-left tut-img" alt=""></a>
-<a href="{% url 'breakout' %}">
-  <h3 class="title">Breakout</h3></a>
+</ul>
+
+
+
 {% endblock %}

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^tutorials/$', views.TutorialsView.as_view(), name='tutorials'),
     url(r'^breakout/$', views.BreakOutView.as_view(), name='breakout'),
     url(r'^breakout2/$', views.BreakOut2View.as_view(), name='breakout2'),
+    url(r'^game-of-life/$', views.GameOfLifeView.as_view(), name='game-of-life'),
 ]

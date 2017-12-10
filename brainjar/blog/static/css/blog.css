@@ -40,14 +40,15 @@ nav {
 #myCarousel {
 }
 
-.tut-img {
-  margin-right: 50px;
-}
 
 .post {
     padding-bottom: 20px;
     padding-top: 20px;
     background-color: rgba(60, 58, 75, 0.8);
+}
+
+.post img{
+  margin-bottom: 50px;
 }
 
 .sidebar-module {
@@ -80,6 +81,7 @@ a {
 
 .godot-code {
   color: white;
+  background-color: rgba(10, 20, 35, 1);
 }
 
 body {
@@ -87,6 +89,11 @@ body {
   background-image: url('/static/img/bricks.png')
 }
 
+.tuts-list li {
+  display: inline;
+  vertical-align: bottom;
+
+}
 .footer {
     margin-top: 100px;
 }

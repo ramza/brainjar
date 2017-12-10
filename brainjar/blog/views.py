@@ -36,3 +36,6 @@ class BreakOutView(TemplateView):
 
 class BreakOut2View(TemplateView):
     template_name = 'breakout2.html'
+
+class GameOfLifeView(TemplateView):
+    template_name = 'game-of-life.html'

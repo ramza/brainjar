@@ -1,0 +1,515 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+
+  <h3>Conway's Game of Life</h3>
+  <h4>Part 1</h4>
+  <p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"  target="_blank">The Game of Life</a>
+    is a cellular automaton created by the British mathematician
+    John Horton Conway in 1970. We're going to create it in Godot 3.0. The Game of Life
+    is a good starting point for learning about grid based games and world generation.
+  </p>
+  <p>The game has the following rules:</p>
+  <ul>
+    <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+    <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+    <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+    <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+  </ul>
+  <a href="{% static 'img/life/game_of_life_01.gif' %}"><img class="img-fluid" src="{% static 'img/life/game_of_life_01.gif' %}" alt=""></a>
+
+  <p>This tutorial was written with the Godot 3.0 Beta. The final scripts are
+    provided at the end. You can download the completed project from github.
+  </p>
+
+  <p>Open Godot 3 and create a new project. I’m going to call mine Game Of Life and
+    create a new folder for it on my desktop. You can create the project anywhere
+    you’d like. When Godot loads, click the <em>2d button</em> in the top center of the
+    editor to got to 2d view.
+  </p>
+
+  <a href="{% static 'img/life/00.png' %}"><img class="img-fluid" src="{% static 'img/life/00.png' %}" alt=""></a>
+
+  <p>
+    Find the scenes tab, it should be on the right side
+    of the editor. You’ll see a <strong>plus sign button</strong>, click it to add a new node. Search
+    for a <strong>Control</strong> node and click Create. Select the newly created Control node and
+    rename it to Cell. With the cell node selected, click the plus button again to
+    add a new Sprite node.
+  </p>
+
+  <a href="{% static 'img/life/01.png' %}"><img class="img-fluid" src="{% static 'img/life/01.png' %}" alt=""></a>
+
+  <p>Save this image as cell.png in the Sprites folder of your project.</p>
+  <a href="{% static 'img/life/cell.png' %}"><img class="img-fluid" src="{% static 'img/life/cell.png' %}" alt=""></a>
+
+  <p>We need to create some folders for our project. Either right click in the
+    resource manager tab and use create new folder or open the project in your OS
+    and do it yourself. Create the following folders: Sprites, Scenes, Scripts.
+    Now select the <strong>Sprite</strong> node. In the inspector, you should see the texture field
+    option. Open the drop down, select load, and then find the cell.png image in your project.
+  </p>
+  <a href="{% static 'img/life/02.png' %}"><img class="img-fluid" src="{% static 'img/life/02.png' %}" alt=""></a>
+  <a href="{% static 'img/life/03.png' %}"><img class="img-fluid" src="{% static 'img/life/03.png' %}" alt=""></a>
+
+  <p>
+  Lets save the scene. Click the Scene button in the top left corner of the
+  editor and select Save As. Save the scene as Cell.tscn in the Scenes folder.
+  </p>
+
+  <p>
+    Right click the Cell node and choose add a child node. ( Alternatvely, click
+    the same plus sign we used ealier to create the first node.) Search for the
+    <strong>AnimationPlayer</strong> node and create it. When you add the
+    <strong>AnimationPlayer</strong>, the animation window will appear at the
+    bottom, in the same section that holds the output and the debugger.
+  </p>
+
+  <p>
+    We need to create two animation states for the cell: Living and Dead.
+    Hit the new animation button (the file with the plus sign). Name it Living.
+    A cool thing about Godot is that you can animated just about anything in the
+    inspector using the keys that appear to the right of the properties.
+  </p>
+  <a href="{% static 'img/life/04.png' %}"><img class="img-fluid" src="{% static 'img/life/04.png' %}" alt=""></a>
+
+  <p>
+    We need
+    to set the color of the Sprite node. Find the Modulate property and use the
+    color picker to select white (it should be white by default), then click the
+    key to the right of the <em>modulate</em> property. Hit create to insert the key.
+  </p>
+
+  <a href="{% static 'img/life/05.png' %}"><img class="img-fluid" src="{% static 'img/life/05.png' %}" alt=""></a>
+
+  <p>Make a new animation called Dead by repeating this process. Choose the
+    color black (rbg 0,0,0) with the color picker.
+    Remember to hit the key button to insert a new key frame.
+  </p>
+  <a href="{% static 'img/life/06.png' %}"><img class="img-fluid" src="{% static 'img/life/06.png' %}" alt=""></a>
+
+
+  <p>Let’s sync the cell to the graphic. Click the cell node and in the inspector
+    find the right margin and left margin properties and change them both to 32.
+    Next click the sprite node and in the inspector unchecked centered. Now the
+    cell and the graphic are lined up.
+  </p>
+  <a href="{% static 'img/life/08.png' %}"><img class="img-fluid" src="{% static 'img/life/08.png' %}" alt=""></a>
+  <a href="{% static 'img/life/09.png' %}"><img class="img-fluid" src="{% static 'img/life/09.png' %}" alt=""></a>
+  <p>
+    Now we’re ready to add a script to the Cell. Right click the cell node and
+    choose add script. Save it to the scripts folder and name it cell.gd. Click
+    create and you’ll be taken to the script editor.
+  </p>
+  <a href="{% static 'img/life/07.png' %}"><img class="img-fluid" src="{% static 'img/life/07.png' %}" alt=""></a>
+
+
+  <a href="{% static 'img/life/10.png' %}"><img class="img-fluid" src="{% static 'img/life/10.png' %}" alt=""></a>
+
+<p>
+  We need a few variables to hold our x and y coordinates on the game grid. And
+  a variable for our type (living or dead). Lastly we need the AnimationPlayer
+  node stored to anim so that we can set the animations. We use some simple
+  functions to set the position and also a getter and setter for our tile_type variable.
+</p>
+
+<pre class="godot-code">
+    # CELL
+    extends Control
+
+    # living or dead
+    var tile_type
+    # position on the grid
+    var x
+    var y
+    # the Animation Playernode
+    onready var anim = get_node("AnimationPlayer")
+
+    func initialize_tile(x, y):
+    	self.x = x
+    	self.y = y
+
+    func set_type(type):
+    	tile_type = type
+    	# 0 is living 1 is dead
+    	if tile_type == 0:
+    		anim.play("Lving")
+    	else:
+    		anim.play("Dead")
+
+    func get_type():
+    	return tile_type
+  </pre>
+
+  <a href="{% static 'img/life/12.png' %}"><img class="img-fluid" src="{% static 'img/life/12.png' %}" alt=""></a>
+
+
+  <p>
+    In the editor, click the Scenes button in the top left and create a new scene.
+    Add a <strong>Node2D</strong> to the scene using the plus button. Name it
+    <em>GameOfLife</em> and then save the scene as GameOfLife.tscn.
+  </p>
+  <a href="{% static 'img/life/11.png' %}"><img class="img-fluid" src="{% static 'img/life/11.png' %}" alt=""></a>
+
+  <p>
+    Let’s take care of the set up first. Go ahead and add a new script to the
+    GameOfLife node and save it as <em>game_of_life.gd</em> inside the Scripts folder.
+    Then right click on the GameOfLife node again and add a new child node.
+    Search for the <strong>Timer</strong> node. Rename it StepTimer.
+  </p>
+  <a href="{% static 'img/life/13.png' %}"><img class="img-fluid" src="{% static 'img/life/13.png' %}" alt=""></a>
+  <a href="{% static 'img/life/14.png' %}"><img class="img-fluid" src="{% static 'img/life/14.png' %}" alt=""></a>
+
+  <p>
+    Repeat the process to create a <strong>Position2D</strong> node and rename
+    it StartPosition.
+  </p>
+  <a href="{% static 'img/life/15.png' %}"><img class="img-fluid" src="{% static 'img/life/15.png' %}" alt=""></a>
+
+  <p>
+    Okay that takes care of the set up. Unfortuantely, if we were to run our game
+    now it wouldn’t do anything. If you pressthe play button in
+    the top right of the editor ( above the scene tab), Godot will complain that
+    we haven’t set a main scene.Go ahead and select the GameOfLife.tscn.
+    You’ll get a blank window.
+  </p>
+  <p>But its time to change that by heading over to the game_of_life.gd script.</p>
+  <a href="{% static 'img/life/16.png' %}"><img class="img-fluid" src="{% static 'img/life/16.png' %}" alt=""></a>
+
+  <p>
+    This script will need a lot of work. First we’re going to make some variables
+    and then get a reference to the nodes we made in the editor.
+  </p>
+
+  <pre class="godot-code">
+    # GAME OF LIFE
+
+    extends Node2D
+
+    var grid = {} # dictionary to hold all the cells
+
+    export var width = 10	# total cells wide
+    export var height = 10	# total cells tall
+    export var cell_size = 32   # width/height of the graphic in pixels
+    export var spawn_rate = 50	# percentage to start living
+    var spacer = 5              # distance between cells
+
+    var start_position	# position to start the grid
+    var step_timer	# time between each step
+
+    var cell = preload("res://scenes/cell.tscn")
+
+    func _ready():
+    	start_position = get_node("StartPosition")
+    	step_timer = get_node("StepTimer")
+  </pre>
+
+  <p>To display the cells we need need to initialize the board. We do this with
+    a nested for loop that steps through each x and y position in the grid. For
+    each position, we instantiate a new cell and place it in the correct position
+    on screen. A type – living or dead – is chosen based on a random number.
+    We’ll also need to add the cell to the dictionary.
+  </p>
+
+  <pre class="godot-code">
+    func initialize_grid():
+  	for y in height:
+  		for x in width:
+  			var new_cell = cell.instance()
+  			new_cell.initialize_tile(x,y)
+  			new_cell.rect_position = (Vector2(start_position.position.x + x*(cell_size+spacer), start_position.position.y + y*(cell_size+spacer)))
+  			add_child(new_cell)
+  			grid[Vector2(x,y)] = new_cell
+  </pre>
+
+  <p>
+    Okay, if wecall initialize_grid from the _ready function and hit play,
+    we’ll get a grid of white squares. Pretty boring. We need to randomize the
+    starting tiles based on our spawnrate. Add the following function and then
+    call it from _ready directly after initialize_grid. We also need to include
+    a call to randomize() in _ready, otherwise we’ll get the same grid every time.
+  </p>
+  <a href="{% static 'img/life/18.png' %}"><img class="img-fluid" src="{% static 'img/life/18.png' %}" alt=""></a>
+
+  <pre class="godot-code">
+    func randomize_grid():
+    	for y in height:
+    		for x in width:
+    			var cell = grid[Vector2(x,y)]
+    			if rand_range(1,101) <= spawn_rate:
+    				cell.set_type(0)
+    			else:
+    				cell.set_type(1)
+
+    func _ready():
+    	randomize()
+    	start_position = get_node("StartPosition")
+    	step_timer = get_node("StepTimer")
+    	initialize_grid()
+    	randomize_grid()
+  </pre>
+
+  <a href="{% static 'img/life/17.png' %}"><img class="img-fluid" src="{% static 'img/life/17.png' %}" alt=""></a>
+
+  <p>
+    Congratulations! You now have a grid of random cells. We
+    still need to create the step function and apply Conway’s rules. Before we
+    can do that though, we need to write a helper function that will find the
+    living neighbors of every cell in the grid. This is what it looks like:
+  </p>
+
+  <pre class="godot-code">
+    func get_living_neighbors(cell):
+  	var living_neighbors = 0
+  	for i in range(-1,2):
+  		for j in range(-1,2):
+  			var x = cell.x+i
+  			var y = cell.y+j
+  			# looking at ourselves
+  			if i == 0 and j == 0:
+  				pass
+  			# if we're not off the map, get the number of living neighbors
+  			elif x >= 0 and x <=width-1 and y >=0 and y <=height-1:
+  				if grid[Vector2(x,y)].get_type() == 0:
+  					living_neighbors += 1
+
+  	return living_neighbors
+  </pre>
+
+  <p>
+    The get neighbors function is one of those pieces of code that you have to
+    write over an over again. Its very useful in game development. Each cell
+    looks at those around it and calculators the total number of living cells.
+  </p>
+  <a href="{% static 'img/life/19.png' %}"><img class="img-fluid" src="{% static 'img/life/19.png' %}" alt=""></a>
+
+  <p>
+    Now we come to the heart of the project: the step function. This does the
+    heavy lifting of the game, You could call this our game loop, but since we’re
+    making a simulation I think the term step is clearer. In each step we will
+    look at every cell in the grid using a nested for loop. Using get_living_neighbors(),
+    the neighbor count is calculated and then Conway’s rules are applied according
+    to whether the cell is living or dead.  Its important that we first record
+    all the new states and not overwrite them as we go along. The births and
+    deaths are suppose to happen simultaneously. I used an array to hold the
+    types for the new cells (either 1 or 0) and then applied them after the
+    first loop is finished with yet another nested for loop.
+  </p>
+
+  <pre class="godot-code">
+    func step():
+    # step over each cell in the grid, check if its living or dead
+    # and then apply the rules to the game of life according to the cell's status
+
+    #	Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+    #	Any live cell with two or three live neighbours lives on to the next generation.
+    #	Any live cell with more than three live neighbours dies, as if by overpopulation.
+    #	Any dead cell with exactly three live neighbours becomes a live cell, as if by reproductio
+    	var types = []
+    	for y in height:
+    		for x in width:
+    			cell = grid[Vector2(x,y)]
+    			var living_neighbors = get_living_neighbors(cell)
+    			# living
+    			if cell.get_type() == 0:
+    				if living_neighbors < 2 or living_neighbors > 3:
+    					types.append(1)
+    				elif living_neighbors == 2 or living_neighbors == 3:
+    					types.append(0)
+    			# dead
+    			elif living_neighbors == 3:
+    				types.append(0)
+    			else:
+    				types.append(1)
+
+    	var index = 0
+    	for y in height:
+    		for x in width:
+    			grid[Vector2(x,y)].set_type(types[index])
+    			index+=1
+  </pre>
+
+  <p>
+    There is one last step we have to take to get it to work. We have to use
+    <em>signals</em>, a feature in the Godot Engine that creates a callback for an event.
+    In this case, we want the signal timeout that is emitted from the StepTimer
+    node. This goes in the ready function:
+  </p>
+
+  <pre class="godot-code">
+  func _ready():
+    #....
+    step_timer.connect("timeout", self, "_on_step_timer_timeout")
+  </pre>
+
+  <p>Back in the editor, in the <em>GameOfLife</em> scene, find the step timer node and
+    click the auto start function. The default time is 1 second, but you can
+    change it to 0.4 seconds if you want to speed things up. Run the game now and
+    you’ll have a working Game of Life clone in Godot. Nice work.
+  </p>
+
+  <p>But we can make this better. First off, we can move the StartPosition node
+     in the editor to something like 300 x 100 and center the game in our screen.
+ </p>
+ <a href="{% static 'img/life/21.png' %}"><img class="img-fluid" src="{% static 'img/life/21.png' %}" alt=""></a>
+ <a href="{% static 'img/life/22.png' %}"><img class="img-fluid" src="{% static 'img/life/22.png' %}" alt=""></a>
+ <p>For a final touch, I’ll show you how to add a button to reset the game. go
+   to the Game of Life Scene in the editor and add a new Button node using the
+    plus sign and searthing for button. Call it ResetButton and set the test to
+    be RESET.  In the game_of_life.gd script, we need add a new variable to
+    serve as a reference to the button and create a function to handle the
+    button press. In the _ready funciont add this variable to the others.
+ </p>
+   <a href="{% static 'img/life/23.png' %}"><img class="img-fluid" src="{% static 'img/life/23.png' %}" alt=""></a>
+  <pre class="godot-code">
+  var start_position	# position to start the grid
+  var step_timer	#
+  var reset_button
+
+  In the start functino:
+
+  func _read():
+  	# ….
+  	reset_button = get_node("ResetButton")
+  	reset_button.connect("pressed", self, "_on_reset_button_pressed")
+
+
+  And add this function to randomize the grid when the button is pressed.
+
+  func _on_reset_button_pressed():
+  	randomize_grid()
+ </pre>
+
+  <a href="{% static 'img/life/game_of_life_03.gif' %}"><img class="img-fluid" src="{% static 'img/life/game_of_life_03.gif' %}" alt=""></a>
+
+  <h4>Here's the full scripts.</h4>
+  <pre class="godot-code">
+    # GAME OF LIFE
+
+    extends Node2D
+
+    var grid = {} # dictionary to hold all the cells
+
+    export var width = 10	# total cells wide
+    export var height = 10	#total cells tall
+    export var cell_size = 32 # width/height of the graphic in pixels
+    export var spawn_rate = 50	# percentage to start living
+    var spacer = 5 				# distance between cells
+
+    var start_position	# position to start the grid
+    var step_timer	#
+    var reset_button
+
+    var cell = preload("res://scenes/cell.tscn")
+
+    func _ready():
+    	randomize()
+    	start_position = get_node("StartPosition")
+    	step_timer = get_node("StepTimer")
+    	step_timer.connect("timeout", self, "_on_step_timer_timeout")
+    	reset_button = get_node("ResetButton")
+    	reset_button.connect("pressed", self, "_on_reset_button_pressed")
+    	initialize_grid()
+    	randomize_grid()
+
+    func _on_reset_button_pressed():
+    	randomize_grid()
+
+    func _on_step_timer_timeout():
+    	step()
+
+    func initialize_grid():
+    	for y in height:
+    		for x in width:
+    			var new_cell = cell.instance()
+    			new_cell.initialize_tile(x,y)
+    			# this line does the heaving lifing, adding the start position node to the cell position and includig a spacer
+    			new_cell.rect_position = (Vector2(start_position.position.x + x*(cell_size+spacer), start_position.position.y + y*(cell_size+spacer)))
+    			add_child(new_cell)
+    			grid[Vector2(x,y)] = new_cell
+
+    func randomize_grid():
+    	for y in height:
+    		for x in width:
+    			var cell = grid[Vector2(x,y)]
+    			if rand_range(1,101) <= spawn_rate:
+    				cell.set_type(0)
+    			else:
+    				cell.set_type(1)
+
+    func get_living_neighbors(cell):
+    	var living_neighbors = 0
+    	for i in range(-1,2):
+    		for j in range(-1,2):
+    			var x = cell.x+i
+    			var y = cell.y+j
+    			# looking at ourselves
+    			if i == 0 and j == 0:
+    				pass
+    			# if we're not off the map, get the number of living neighbors
+    			elif x >= 0 and x <=width-1 and y >=0 and y <=height-1:
+    				if grid[Vector2(x,y)].get_type() == 0:
+    					living_neighbors += 1
+
+    	return living_neighbors
+
+    func step():
+    # 	step over each cell in the grid, check if its living or dead
+    # 	and then apply the rules to the game of life according to the cell's status
+    #
+    #	Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+    #	Any live cell with two or three live neighbours lives on to the next generation.
+    #	Any live cell with more than three live neighbours dies, as if by overpopulation.
+    #	Any dead cell with exactly three live neighbours becomes a live cell, as if by reproductio
+    	var types = []
+    	for y in height:
+    		for x in width:
+    			cell = grid[Vector2(x,y)]
+    			var living_neighbors = get_living_neighbors(cell)
+    			# living
+    			if cell.get_type() == 0:
+    				if living_neighbors < 2 or living_neighbors > 3:
+    					types.append(1)
+    				elif living_neighbors == 2 or living_neighbors == 3:
+    					types.append(0)
+    			# dead
+    			elif living_neighbors == 3:
+    				types.append(0)
+    			else:
+    				types.append(1)
+
+    	var index = 0
+    	for y in height:
+    		for x in width:
+    			grid[Vector2(x,y)].set_type(types[index])
+    			index+=1
+
+
+    # CELL
+    extends Control
+
+    # living or dead
+    var tile_type
+    # position on the grid
+    var x
+    var y
+    # the Animation Playernode
+    onready var anim = get_node("AnimationPlayer")
+
+    func initialize_tile(x, y):
+    	self.x = x
+    	self.y = y
+
+    func set_type(type):
+    	tile_type = type
+    	# 0 is living 1 is dead
+    	if tile_type == 0:
+    		anim.play("Living")
+    	else:
+    		anim.play("Dead")
+
+    func get_type():
+    	return tile_type
+  </pre>
+
+{% endblock %}
