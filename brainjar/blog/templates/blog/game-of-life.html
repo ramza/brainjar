@@ -19,7 +19,8 @@
   <a href="{% static 'img/life/game_of_life_01.gif' %}"><img class="img-fluid" src="{% static 'img/life/game_of_life_01.gif' %}" alt=""></a>
 
   <p>This tutorial was written with the Godot 3.0 Beta. The final scripts are
-    provided at the end. You can download the completed project from github.
+    provided at the end. You can download the completed project from
+    <a href="https://github.com/ramza/GameOfLife" target="blank">github</a>.
   </p>
 
   <p>Open Godot 3 and create a new project. I’m going to call mine Game Of Life and
@@ -31,21 +32,22 @@
   <a href="{% static 'img/life/00.png' %}"><img class="img-fluid" src="{% static 'img/life/00.png' %}" alt=""></a>
 
   <p>
-    Find the scenes tab, it should be on the right side
+    Find the Scenes tab, it should be on the right side
     of the editor. You’ll see a <strong>plus sign button</strong>, click it to add a new node. Search
     for a <strong>Control</strong> node and click Create. Select the newly created Control node and
-    rename it to Cell. With the cell node selected, click the plus button again to
-    add a new Sprite node.
+    rename it Cell. With the Cell node selected, click the plus button again to
+    add a new <strong>Sprite</strong> node.
   </p>
 
   <a href="{% static 'img/life/01.png' %}"><img class="img-fluid" src="{% static 'img/life/01.png' %}" alt=""></a>
 
-  <p>Save this image as cell.png in the Sprites folder of your project.</p>
+  <p>We need to create some folders for our project. Either right click in the
+    resource manager tab and use <em>create new folder</em> or open the project in your OS
+    and do it there. Create the following folders: Sprites, Scenes, Scripts.
+    Save this image as cell.png in the Sprites folder of your project.</p>
   <a href="{% static 'img/life/cell.png' %}"><img class="img-fluid" src="{% static 'img/life/cell.png' %}" alt=""></a>
 
-  <p>We need to create some folders for our project. Either right click in the
-    resource manager tab and use create new folder or open the project in your OS
-    and do it yourself. Create the following folders: Sprites, Scenes, Scripts.
+  <p>
     Now select the <strong>Sprite</strong> node. In the inspector, you should see the texture field
     option. Open the drop down, select load, and then find the cell.png image in your project.
   </p>
@@ -58,31 +60,29 @@
   </p>
 
   <p>
-    Right click the Cell node and choose add a child node. ( Alternatvely, click
-    the same plus sign we used ealier to create the first node.) Search for the
+    Right click the Cell node and add a child node. Search for the
     <strong>AnimationPlayer</strong> node and create it. When you add the
     <strong>AnimationPlayer</strong>, the animation window will appear at the
-    bottom, in the same section that holds the output and the debugger.
+    bottom of the editor, in the same section that holds the Output and the Debugger.
   </p>
 
   <p>
     We need to create two animation states for the cell: Living and Dead.
-    Hit the new animation button (the file with the plus sign). Name it Living.
-    A cool thing about Godot is that you can animated just about anything in the
+    Hit the <em>new animation button</em> (the file with the plus sign). Name it 'Living'
+    -- a cool thing about Godot is that you can animated just about anything in the
     inspector using the keys that appear to the right of the properties.
   </p>
   <a href="{% static 'img/life/04.png' %}"><img class="img-fluid" src="{% static 'img/life/04.png' %}" alt=""></a>
 
   <p>
-    We need
-    to set the color of the Sprite node. Find the Modulate property and use the
+    We need to set the color of the Sprite node. Find the Modulate property and use the
     color picker to select white (it should be white by default), then click the
     key to the right of the <em>modulate</em> property. Hit create to insert the key.
   </p>
 
   <a href="{% static 'img/life/05.png' %}"><img class="img-fluid" src="{% static 'img/life/05.png' %}" alt=""></a>
 
-  <p>Make a new animation called Dead by repeating this process. Choose the
+  <p>Make a new animation called 'Dead' by repeating this process. Choose the
     color black (rbg 0,0,0) with the color picker.
     Remember to hit the key button to insert a new key frame.
   </p>
@@ -167,13 +167,13 @@
   <a href="{% static 'img/life/15.png' %}"><img class="img-fluid" src="{% static 'img/life/15.png' %}" alt=""></a>
 
   <p>
-    Okay that takes care of the set up. Unfortuantely, if we were to run our game
-    now it wouldn’t do anything. If you pressthe play button in
-    the top right of the editor ( above the scene tab), Godot will complain that
-    we haven’t set a main scene.Go ahead and select the GameOfLife.tscn.
+    Okay that takes care of the set up. Unfortuantely, if we run our game
+    now it doesn't do much of anything. Press the play button in
+    the top right of the editor (above the scene tab), Godot will complain that
+    we haven’t set a main scene. Go ahead and select the GameOfLife.tscn.
     You’ll get a blank window.
   </p>
-  <p>But its time to change that by heading over to the game_of_life.gd script.</p>
+  <p>Its time to change that by heading over to the game_of_life.gd script.</p>
   <a href="{% static 'img/life/16.png' %}"><img class="img-fluid" src="{% static 'img/life/16.png' %}" alt=""></a>
 
   <p>
@@ -208,7 +208,7 @@
     a nested for loop that steps through each x and y position in the grid. For
     each position, we instantiate a new cell and place it in the correct position
     on screen. A type – living or dead – is chosen based on a random number.
-    We’ll also need to add the cell to the dictionary.
+    We’ll also need to add the new cell to the dictionary named grid.
   </p>
 
   <pre class="godot-code">
@@ -223,11 +223,11 @@
   </pre>
 
   <p>
-    Okay, if wecall initialize_grid from the _ready function and hit play,
+    Okay, if we call initialize_grid from the _ready function and hit play,
     we’ll get a grid of white squares. Pretty boring. We need to randomize the
     starting tiles based on our spawnrate. Add the following function and then
     call it from _ready directly after initialize_grid. We also need to include
-    a call to randomize() in _ready, otherwise we’ll get the same grid every time.
+    a call to randomize(), otherwise we’ll get the same grid every time.
   </p>
   <a href="{% static 'img/life/18.png' %}"><img class="img-fluid" src="{% static 'img/life/18.png' %}" alt=""></a>
 
@@ -285,14 +285,14 @@
 
   <p>
     Now we come to the heart of the project: the step function. This does the
-    heavy lifting of the game, You could call this our game loop, but since we’re
+    heavy lifting, You could call this our game loop, but since we’re
     making a simulation I think the term step is clearer. In each step we will
     look at every cell in the grid using a nested for loop. Using get_living_neighbors(),
     the neighbor count is calculated and then Conway’s rules are applied according
     to whether the cell is living or dead.  Its important that we first record
     all the new states and not overwrite them as we go along. The births and
     deaths are suppose to happen simultaneously. I used an array to hold the
-    types for the new cells (either 1 or 0) and then applied them after the
+    types for the new cells (either 1 or 0) and then applied them <em>after</em> the
     first loop is finished with yet another nested for loop.
   </p>
 
@@ -322,6 +322,7 @@
     			else:
     				types.append(1)
 
+      # set the types
     	var index = 0
     	for y in height:
     		for x in width:
@@ -330,9 +331,9 @@
   </pre>
 
   <p>
-    There is one last step we have to take to get it to work. We have to use
-    <em>signals</em>, a feature in the Godot Engine that creates a callback for an event.
-    In this case, we want the signal timeout that is emitted from the StepTimer
+    There is one last step we have to take. We need to use <em>signals</em>:
+    a feature in the Godot Engine that creates a callback for an event.
+    In this case, we want the signal 'timeout' that is emitted from the StepTimer
     node. This goes in the ready function:
   </p>
 
@@ -342,23 +343,23 @@
     step_timer.connect("timeout", self, "_on_step_timer_timeout")
   </pre>
 
-  <p>Back in the editor, in the <em>GameOfLife</em> scene, find the step timer node and
+  <p>Back in the editor, in the <em>GameOfLife</em> scene, find the StepTimer node and
     click the auto start function. The default time is 1 second, but you can
     change it to 0.4 seconds if you want to speed things up. Run the game now and
     you’ll have a working Game of Life clone in Godot. Nice work.
   </p>
 
-  <p>But we can make this better. First off, we can move the StartPosition node
-     in the editor to something like 300 x 100 and center the game in our screen.
+  <p>But we can make this better. First, move the StartPosition node
+     in the editor to something like 300 x 100 to center the game in our screen.
  </p>
  <a href="{% static 'img/life/21.png' %}"><img class="img-fluid" src="{% static 'img/life/21.png' %}" alt=""></a>
  <a href="{% static 'img/life/22.png' %}"><img class="img-fluid" src="{% static 'img/life/22.png' %}" alt=""></a>
  <p>For a final touch, I’ll show you how to add a button to reset the game. go
-   to the Game of Life Scene in the editor and add a new Button node using the
-    plus sign and searthing for button. Call it ResetButton and set the test to
+   to the Game of Life Scene in the editor and add a new <strong>Button</strong> node.
+    Call it ResetButton and set the text to
     be RESET.  In the game_of_life.gd script, we need add a new variable to
     serve as a reference to the button and create a function to handle the
-    button press. In the _ready funciont add this variable to the others.
+    button press. In the _ready funcion add this variable to the others.
  </p>
    <a href="{% static 'img/life/23.png' %}"><img class="img-fluid" src="{% static 'img/life/23.png' %}" alt=""></a>
   <pre class="godot-code">
@@ -374,7 +375,7 @@
   	reset_button.connect("pressed", self, "_on_reset_button_pressed")
 
 
-  And add this function to randomize the grid when the button is pressed.
+  # and add this function to randomize the grid when the button is pressed.
 
   func _on_reset_button_pressed():
   	randomize_grid()
