@@ -343,6 +343,12 @@
     step_timer.connect("timeout", self, "_on_step_timer_timeout")
   </pre>
 
+  <p>We need to add this function so that step will run with the timer goes off.</p>
+  <pre class="godot-code">
+    func _on_step_timer_timeout():
+      step()
+  </pre>
+
   <p>Back in the editor, in the <em>GameOfLife</em> scene, find the StepTimer node and
     click the auto start function. The default time is 1 second, but you can
     change it to 0.4 seconds if you want to speed things up. Run the game now and
