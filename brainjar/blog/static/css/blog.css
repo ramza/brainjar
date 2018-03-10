@@ -88,9 +88,13 @@ a {
 
 body {
   color: white;
-  background-image: url('/static/img/bricks.png')
+  background: linear-gradient(to bottom, lightblue, blue);
+
 }
 
+#mad_gear_body {
+  background-image: url('/static/img/bricks.png')
+}
 .tuts-list li {
   display: inline;
   vertical-align: bottom;
