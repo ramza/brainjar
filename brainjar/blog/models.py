@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 # Model for our blog post, contains all the information about the post
 class Post(models.Model):
-    author = models.ForeignKey('auth.User')
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE,)
     title = models.CharField(max_length=256)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
