@@ -14,7 +14,7 @@
         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
         <p class="blog-post-meta">{{post.published_date|date:"d m Y"}} by <a href="#">{{post.author}}</a></p>
         <p>{{post.text|truncatechars:200}}</p>
-
+        <hr>
 
       </div><!-- /.blog-post -->
     {% endfor %}

@@ -3,11 +3,16 @@
 }
 
 .navbar-brand {
+
     font-size: 1.5em;
 }
 
 .navbar-brand img {
-  margin: 0px 0px 0px 0px;
+
+}
+
+.navbar-nav {
+  margin-left: 50px;
 }
 
 h2, h3 {
@@ -19,26 +24,36 @@ p {
     font-family: 'Hind Guntur', sans-serif;
 }
 
+hr {
+
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 1px;
+}
 .post strong {
-  color: lightblue;
+
 }
 
 .post p {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
 }
 
 h2 {
-  background-color: rgba(100,40,100,0.25);
+
   padding: 5px;
   margin-bottom: 30px;
 }
 nav {
   font-family: 'Quantico', sans-serif;
   /*font-family: 'Exo 2', sans-serif;*/
-  font-size: 1.1em;
+  font-size: 1.5em;
   margin-top: 0px;
   margin-bottom: 15px;
   padding-bottom: 10px;
+  margin-left: 25px;
 }
 
 #myCarousel {
@@ -48,20 +63,24 @@ nav {
 .post {
     padding-bottom: 20px;
     padding-top: 20px;
-    background-color: rgba(60, 58, 75, 0.8);
+    background-color: white;
+    color:black;
+  background: linear-gradient(to bottom, lightpink, pink);
 }
 
 
 
 .sidebar-module {
-  padding: 10px;
-  margin-top: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
-  background-color: rgba(60, 58, 75, 0.8);
+  color: black;
 }
 
+.sidebar-module a {
+  color: red;
+}
 a {
-  color: rgb(107, 255, 235);
+  color: black;
 }
 
 .post button {
@@ -83,12 +102,12 @@ a {
 
 .godot-code {
   color: white;
-  background-color: rgba(10, 20, 35, 1);
+  background-color: grey;
 }
 
 body {
   color: white;
-  background: linear-gradient(to bottom, lightblue, blue);
+  background: linear-gradient(to bottom, lightpink, pink);
 
 }
 
@@ -102,6 +121,7 @@ body {
 }
 .footer {
     margin-top: 100px;
+    color: black;
 }
 
 .blog-main {

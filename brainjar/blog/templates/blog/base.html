@@ -34,9 +34,6 @@
   </head>
 
   <body>
-    <div class="container">
-      <img src="{% static 'img/header.png' %}" class="img-fluid" alt="">
-    </div>
 
     <div id="fb-root"></div>
       <script>(function(d, s, id) {
@@ -47,14 +44,13 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
 
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" style="background-color: rgb(65, 72, 73);">
+    <nav class="navbar navbar-toggleable-md">
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="container">
       <a class="navbar-brand" href="{% url 'post-list' %}">
-            <img src="{% static 'img/logo_small.png' %}" width="50" height="50" class='d-inline-block' alt="">
             Brain Jar
       </a>
 
@@ -76,18 +72,23 @@
              <a class="dropdown-item" href="{% url 'gaspard' %}">Gaspard</a>
            </div>
          </li>
-
         </ul>
       </div>
-    </div>
-    </nav>
 
+    </div>
+
+    </nav>
+<hr>
 
     <div class="container">
 
       <div class="row">
 
         <div class="col-sm-8 blog-main post">
+
+          <div class="container">
+            <img src="{% static 'img/header.png' %}" class="img-fluid" alt="">
+          </div>
 
           {% block body_block %}
           {% endblock %}
@@ -96,45 +97,22 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>Bio</h4>
-            <p>Brain Jar Labs is the twisted creation of a group of mad scientists turned multi-dimensional wizard drifters..</p>
-            <a href="https://twitter.com/brainjargames">twitter.com/brainjargames</a>
+            <h3>Bio</h3>
+            <p>Brain Jar Games is making exciting new video games for you to play!.</p>
+            <ol class="list-unstyled">
+              <li><a href="https://twitter.com/brainjargames">twitter.com/brainjargames</a></li>
+              <li><a href="https://brainjar.itch.io">itch.io</a></li>
+            </ol>
+
             <hr>
             </div>
-        <div class="sidebar-module">
-            <img src="{% static "img/ninja.png" %}"  class="img-fluid" alt="Image Missing">
-            <p></p>
-            <p><strong>ramza</strong> - co-founder and lead developer/artist</p>
-        </div>
-        <div class="sidebar-module">
-            <img src="{% static "img/melted_visions.jpg" %}"  class="img-fluid" alt="Image Missing">
-            <p></p>
-            <p><strong>melted visions</strong> - co-founder and artist</p>
-        </div>
 
           <div class="sidebar-module">
-            <h4>Games</h4>
+            <h3>Latest Games</h3>
             <ol class="list-unstyled">
               <li><a href="{% url 'the-mad-gear' %}">The Mad Gear</a></li>
               <li><a href="{% url 'cosmic-trash' %}">Cosmic Trash</a></li>
               <li><a href="{% url 'gaspard' %}">Gaspard</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Support Us!</h4>
-            <p>Help us keep making games with a donation.</p>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="AQ5ZZTEQ6AVYY">
-              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>
-          <div class="sidebar-module">
-            <h4>Social</h4>
-            <ol class="list-unstyled">
-              <li><a href="https://github.com/ramza">GitHub</a></li>
-              <li><a href="https://twitter.com/brainjargames">Twitter</a></li>
-              <li><a href="https://brainjar.itch.io">Itch</a></li>
             </ol>
           </div>
 
@@ -143,14 +121,7 @@
       </div><!-- /.row -->
 
       <footer class="blog-footer footer">
-        <p>Brain Jar Games 2017. Follow us on <a href="https://twitter.com/brainjargames">Twitter</a>.</p>
-        <a href="https://twitter.com/brainjargames"><img class="img-fluid" src="{% static 'img/icons/twitter.png' %}" alt=""></a>
-        <a href="https://brainjar.itch.io/"><img class="img-fluid" src="{% static 'img/icons/itch.png' %}" alt=""></a>
-        <a href="https://www.paypal.me/bumbler"><img src="{% static 'img/icons/paypal.png' %}" alt=""></a>
-        <hr>
-        <p>
-          <a href="#">Back to top</a>
-        </p>
+        <p>Brain Jar Games 2019</p>
       </footer>
 
     </div><!-- /.container -->
