@@ -3,15 +3,33 @@
 {% block body_block %}
   <div class="container">
     <div class="blog-header">
-      <h2 class="blog-title">News From Brain Jar</h2>
-      <p class="lead blog-description">Life inside the simulation.</p>
+      <h3 class="blog-title">News from the Studio</h4>
+      <p class="lead blog-description">Brain Jar is currently hard at work on their next project:
+      The Wizard's Labyrinth. You play a sorcerer who must use his
+    magic powers to escape the dangers of the labyrinth and return to the mortal plane.</p>
     </div>
-    <h3> Blaster Cats </h3>
+
+    <h3> <a href=https://brainjar.itch.io/standard-gaming-company target="blank">Standard Gaming Company </h3>
+    <a href="{% static 'img/screenshots/sgc.png' %}"><img class="img-fluid" src="{% static 'img/screenshots/sgc.png' %}" alt=""></a>
+
+    <h3><a href=https://brainjar.itch.io/the-mad-gear target="blank"> The Mad Gear </h3>
+    <a href="{% static 'img/rex.png' %}"><img class="img-fluid" src="{% static 'img/rex.png' %}" alt=""></a>
+
+    <h3> <a href=https://brainjar.itch.io/blaster-cats target="blank">Blaster Cats </h3>
     <a href="{% static 'img/screenshots/blastercats/targan.gif' %}"><img class="img-fluid" src="{% static 'img/screenshots/blastercats/targan.gif' %}" alt=""></a>
+
+    <h3><a href=https://brainjar.itch.io/power-lost target="blank"> Power Lost </h3>
+    <a href="{% static 'img/screenshots/power-lost-1.png' %}"><img class="img-fluid" src="{% static 'img/screenshots/power-lost-1.png' %}" alt=""></a>
+
+    <h3><a href=https://brainjar.itch.io/unknown-planet target="blank"> Unknown Planet</h3>
+    <a href="{% static 'img/screenshots/up1.png' %}"><img class="img-fluid" src="{% static 'img/screenshots/up1.png' %}" alt=""></a>
+
+
+
 
     {% for post in post_list %}
       <div class="blog-post">
-        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
+        <h3><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h3>
         <p class="blog-post-meta">{{post.published_date|date:"d m Y"}} by <a href="#">{{post.author}}</a></p>
         <p>{{post.text|truncatechars:200}}</p>
         <hr>

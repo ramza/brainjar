@@ -114,6 +114,13 @@ body {
 #mad_gear_body {
   background-image: url('/static/img/bricks.png')
 }
+
+#mad_gear_body .btn-primary{
+}
+
+#mad_gear_body a{
+  color: white;
+}
 .tuts-list li {
   display: inline;
   vertical-align: bottom;
