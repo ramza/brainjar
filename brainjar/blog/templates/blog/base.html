@@ -51,6 +51,7 @@
       </button>
       <div class="container">
       <a class="navbar-brand" href="{% url 'post-list' %}">
+        <img src="{% static 'img/logo_small.png' %}" class="img-fluid" alt="">
             Brain Jar
       </a>
 
@@ -67,6 +68,7 @@
              Games
            </a>
            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+             <a class="dropdown-item" href=https://brainjar.itch.io/the-wizards-labyrinth target="blank">The Wizard's Labyrinth</a>
              <a class="dropdown-item" href=https://brainjar.itch.io/standard-gaming-company target="blank">Standard Gaming Company</a>
              <a class="dropdown-item" href=https://brainjar.itch.io/save-the-boy target="blank">Save The Boy</a>
              <a class="dropdown-item" href=https://brainjar.itch.io/vapor-rider target="blank">Vapor Rider</a>
@@ -83,8 +85,6 @@
     </div>
 
     </nav>
-<hr>
-
     <div class="container">
 
       <div class="row">
@@ -104,7 +104,7 @@
           <div class="sidebar-module sidebar-module-inset">
             <h3>Bio</h3>
             <p>Brain Jar is making exciting new video games! Our work is driven
-            by a passion for art and new experiences.</p>
+            by a passion for art.</p>
             <ol class="list-unstyled">
               <li><a href="https://twitter.com/brainjargames">twitter.com/brainjargames</a></li>
               <li><a href="https://brainjar.itch.io">itch.io</a></li>
@@ -116,6 +116,7 @@
           <div class="sidebar-module">
             <h3>Games Selection</h3>
             <ol class="list-unstyled">
+              <li><a href=https://brainjar.itch.io/the-wizards-labyrinth target="blank">The Wizard's Labyrinth</a></li>
               <li><a href=https://brainjar.itch.io/standard-gaming-company target="blank">Standard Gaming Company</a></li>
               <li><a href="{% url 'cosmic-trash' %}">Cosmic Trash</a></li>
               <li><a href=https://brainjar.itch.io/save-the-boy target="blank">Save The Boy</a></li>
@@ -132,7 +133,7 @@
       </div><!-- /.row -->
 
       <footer class="blog-footer footer">
-        <p>Brain Jar 2019</p>
+      <p>Brain Jar 2019</p>
       </footer>
 
     </div><!-- /.container -->
