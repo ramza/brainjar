@@ -12,7 +12,7 @@
 }
 
 .navbar-nav {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 h2, h3 {
@@ -38,7 +38,7 @@ hr {
 }
 
 .post p {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -52,8 +52,7 @@ nav {
   font-size: 1.5em;
   margin-top: 0px;
   margin-bottom: 15px;
-  padding-bottom: 10px;
-  margin-left: 25px;
+
 }
 
 #myCarousel {
@@ -63,6 +62,7 @@ nav {
 .post {
     padding-bottom: 20px;
     padding-top: 20px;
+    margin-right: 50px;
     background-color: white;
     color:black;
   background: linear-gradient(to bottom, lightpink, pink);
@@ -71,10 +71,8 @@ nav {
 
 
 .sidebar-module {
-  padding: 10px;
   margin-bottom: 10px;
   color: black;
-  background: linear-gradient(to bottom, lightpink, pink);
 }
 
 .sidebar-module a {
@@ -98,7 +96,7 @@ a {
 }
 
 .logo {
-  text-align: center;
+
 }
 
 .godot-code {
@@ -109,7 +107,7 @@ a {
 body {
   color: white;
   background: linear-gradient(to bottom, lightpink, pink);
-  background-image: url('/static/img/pink_tile.png')
+
 }
 
 #mad_gear_body {
@@ -127,11 +125,12 @@ body {
   vertical-align: bottom;
 
 }
+
 .footer {
     margin-top: 100px;
     color: black;
 }
 
 .blog-main {
-  margin-right: 30px;
+  margin-right: 60px;
 }
