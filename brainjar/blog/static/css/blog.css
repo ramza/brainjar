@@ -12,23 +12,23 @@
 }
 
 .navbar-nav {
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 h2, h3 {
-  font-family: 'Quantico', sans-serif;
+  font-family: sans-serif;
   /*font-family: 'Exo 2', sans-serif;*/
   margin-top: 10px;
+  color: purple;
 }
 p {
-    font-family: 'Hind Guntur', sans-serif;
+    font-family: sans-serif;
 }
 
 hr {
 
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  margin-left: auto;
   margin-right: auto;
   border-style: solid;
   border-width: 1px;
@@ -43,12 +43,11 @@ hr {
 
 h2 {
 
-  padding: 5px;
   margin-bottom: 30px;
 }
 nav {
-  font-family: 'Quantico', sans-serif;
-  /*font-family: 'Exo 2', sans-serif;*/
+  /*font-family: sans-serif;*/
+  font-family: 'Exo 2', sans-serif;
   font-size: 1.5em;
   margin-top: 0px;
   margin-bottom: 15px;
@@ -61,11 +60,9 @@ nav {
 
 .post {
     padding-bottom: 20px;
-    padding-top: 20px;
-    margin-right: 50px;
     background-color: white;
     color:black;
-  background: linear-gradient(to bottom, lightpink, pink);
+    background: linear-gradient(to bottom, lightgreen, green);
 }
 
 
@@ -76,10 +73,11 @@ nav {
 }
 
 .sidebar-module a {
-  color: red;
+  color: blue;
 }
 a {
-  color: black;
+
+  color: blue;
 }
 
 .post button {
@@ -106,7 +104,7 @@ a {
 
 body {
   color: white;
-  background: linear-gradient(to bottom, lightpink, pink);
+  background: linear-gradient(to bottom, lightgreen, green);
 
 }
 
