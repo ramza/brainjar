@@ -123,7 +123,7 @@
   <p>In the "_physics_process(delta)" function, we'll create a match statement that will determine which state is executed. Then we need to create Idle(delta) and Hop(delta) functions that will control the individual states.</p>
   <p>To switch between states, we use a timer. After the timer passes a certain delay perioud, a helper function is called (ChangeState) which resets the timer and sets currentBunnyState to the new state. Using these tools, our bunny will move around forever on its own.</p>
   <p>We also need a reference to the AnimationPlayer. We can do this with the "onready" keyword. In the idle function, we'll tell the AnimationPlayer to play the "idle" animation we made. We can do the same in the Hop function, but play the "hop" animation instead.</p>
-  <p>I also created an Initialize() function that get's called when the Bunny enters the scene. It will add a little variation to the idle and hop times for the bunny, making each more unique. I also created a RandomizeColor() function that will randomly color the bunny by modulating the sprite node, which we grab using the "onready" keyword, just like we did with the animationPlayer.</p>
+  <p>I also created an Initialize() function is called when the Bunny enters the scene. It will add a little variation to the idle and hop times for the bunny, making each more unique. I also created a RandomizeColor() function that will randomly color the bunny by modulating the sprite node, which we grab using the "onready" keyword, just like we did with the AnimationPlayer.</p>
 
   <pre class="godot-code">
   #BUNNY
@@ -224,13 +224,13 @@
 
   <p>But wait, there's more! What if we want more bunnies? Let's create a new script to handle the simulation of more bunnies. Create a new Node2D under "World" and name it "Simulation." Then create a new "Position2D" node and make sure it's a child of "Simulation." Rename the Position2D node to "SpawnPoint" and move it to match the location of our bunny.</p>
   <a href="{% static 'img/BunnyWorld/spawn_point.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/spawn_point.png' %}" alt=""></a>
-  <p>Before we can spawn any bunnies, we need to save the Bunny node as it's own scene. Right click on the bunny node and select "Save Branch As Scene" and save it in the Scenes folder.</p>
+  <p>Before we can spawn any bunnies, we need to save the Bunny node as its own scene. Right click on the bunny node and select "Save Branch As Scene" and save it in the Scenes folder.</p>
   <a href="{% static 'img/BunnyWorld/save_branch_as_scene.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/save_branch_as_scene.png' %}" alt=""></a>
 
   <p>Next, add a script to the Simulation node. Save it in the Scripts folder as "Simulation.gd." This script will do two things. It will create some starting bunnies to populate the scene. It will also let the player create new bunnies with the click of the mouse!</p>
 
   <p>Let's take a closer look at how it works. First we have to load the bunny scene in script. We can do this using the “preload” keyword. Next we have a SpawnBunny() function that creates a new instance of a bunny, adds it as a child of the Simulation node, and then moves it to the given location.</p>
-  <p>In our list of variables you'll see one called "start_bunny_count." This controls how many bunnies we will create at the start of the game. It uses the "Export" keyword to open this value up to the editor, that way you can change it on the fly, right in the Inspector.</p>
+  <p>In our list of variables you'll see one called "start_bunny_count." This controls how many bunnies we will create at the start of the game. It uses the "export" keyword to open this value up to the editor, that way you can change it on the fly, right in the Inspector.</p>
   <p>Secondly, we used the _process(delta) function in the Simulation.gd script to check for a mouse click event. If we detect a mouse click, we will spawn a bunny at the event position, which will be the location of the mouse on the screen.</p>
 
 
@@ -260,7 +260,7 @@
 
   </pre>
 
-  <p>Now you can create as many bunnies as you want! I hope you learned something fromt his tutorial. Please check out our games on <a href="https://brainjar.itch.io/" target="blank">Itch.io</a> and look out for more tutorials in the future. I’ve included all the project files on <a href="https://github.com/ramza/BunnyWorld" target="blank">github</a> so you can use them for reference.</p>
+  <p>Now you can create as many bunnies as you want! I hope you learned something from his tutorial. Please check out our games on <a href="https://brainjar.itch.io/" target="blank">Itch.io</a> and look out for more tutorials in the future. I’ve included all the project files on <a href="https://github.com/ramza/BunnyWorld" target="blank">github</a> so you can use them for reference.</p>
   <a href="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}" alt=""></a>
 
 {% endblock %}
