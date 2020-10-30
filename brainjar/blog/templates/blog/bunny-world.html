@@ -1,0 +1,265 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+
+  <h3>Bunny World</h3>
+
+  This exercise will teach a variety of skills useful to both <strong>Godot</strong> and game development in general. We'll create a simple level and have lots of bunnies hopping around.
+  </p>
+  <p>We'll start by creating the Bunny scene and then move on to building a TileMap. After that we can work on the simulation. This exercise is designed for beginners and intermediate users.</p>
+  <p>Topics Covered:</p>
+  <ul>
+    <li>TIlemaps</li>
+    <li>State Machines</li>
+    <li>AnimationPlayer</li>
+    <li>Scripting</li>
+  </ul>
+
+
+  <a href="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}" alt=""></a>
+
+  <p>This tutorial was written with Godot 3.2.2. The final scripts are
+    provided. You can download the completed project on
+    <a href="https://github.com/ramza/BunnyWorld" target="blank">github</a>.
+  </p>
+
+  <p>Okay, let's get started!</p>
+  <h4>Step One: Project Creation and Setup</h4>
+  <p>Let's begin by creating a new Godot project. I'm using Godot version 3.2.2.
+  You'll be greeted by an empty project. On the left side of the Godot editor, you'll
+  see "Create Root Node."</p>
+
+  <a href="{% static 'img/BunnyWorld/new_project.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/new_project.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/empty_project.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/empty_project.png' %}" alt=""></a>
+
+  <p>Go ahead and click on the "2D Scene" button. This will create an empty node. Rename it to "World." Next we need to set up the file system. In the bottom left of the editor, you'll find the resources folder. Right click on it and select "New Folder". Name the folder "Scenes". While we're here, let’s create two more folders. One for "Scripts," and one for "Graphics." </p>
+
+  <a href="{% static 'img/BunnyWorld/world_node.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/world_node.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/file_system.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/file_system.png' %}" alt=""></a>
+
+  <p>Now we can save the scene. Go to Scene -> Save As and make sure the “World” scene saves in the Scenes folder.</p>
+
+  <p>Next we should configure the graphic settings for the project. Goto Project -> Project Settings. Using the scroll bar on the left side of the pop-up, find the "Window" option. Here we will make some changes. First, change the width and height to "320" by "180". We need to do this because we are using 8 x 8 sprites for our tiles.</p>
+
+  <a href="{% static 'img/BunnyWorld/project_settings.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/project_settings.png' %}" alt=""></a>
+
+  <p>Also check the "Resizable" option. Then scroll down and change "Mode" to "viewport" and "Aspect" to "keep."</p>
+  <a href="{% static 'img/BunnyWorld/project_settings_window.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/project_settings_window.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/project_settings_window_stretch.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/project_settings_window_stretch.png' %}" alt=""></a>
+
+  <h4>Step Two: The TileMap</h4>
+
+  <p>Great! Now we need to make the TileMap so that our bunnies have a world to run around in. Start by making a new scene. Once again, choose the "2D Scene" option and rename the "Node2D" to "Tiles."</p>
+
+  <p>Next, click on the plus sign icon above the "Tiles" node. This will bring up a list of all the nodes Godot has to offer. Find the "Sprite" node. You can search for it in the toolbar. Click the "Create" button and a brand new sprite node will be added to the scene as a child of the "Tiles" node.</p>
+  <a href="{% static 'img/BunnyWorld/add_new_node.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/add_new_node.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/tilemap_setup.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/tilemap_setup.png' %}" alt=""></a>
+
+  <p>Before we can proceed, we need our artwork. Download the tiles.png and bunny.png image files below and add them to the project under the Graphics folder. You can do this in the file manager, or by dragging the files directly into the project editor.</p>
+
+  <a href="{% static 'img/BunnyWorld/add_graphics.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/add_graphics.png' %}" alt=""></a>
+
+  <p>Because we're making a pixel art game, we need to tell Godot to disable filtering on the images. If we don't, our images will be blurry. With an image selected in the FileSystem, click on the Import tab (next to the Scene tab) and uncheck the box next to "Filter." To save it, click the "ReImport" button. Do this for "bunny.png" as well.</p>
+  <a href="{% static 'img/BunnyWorld/image_filter_disabled.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/image_filter_disabled.png' %}" alt=""></a>
+
+  <p>It's a good time to save the "Tiles" scene. Scene -> Save Scene. Make sure to save it in the  Scenes folder. This way our project reamins tidy.</p>
+  <p>We're finally ready to make some tiles. Click on the sprite node and load our tiles.png image into the texture field. Scroll down and enable "Region". This will let us pick tiles from a single image.</p>
+  <a href="{% static 'img/BunnyWorld/sprite.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/sprite.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/texture.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/texture.png' %}" alt=""></a>
+
+  <p>Click "TextureRegion" at the bottom of the screen to select an individual tile. To make it really easy, choose "Grid Snap" from the "Snap Mode" dropdown and set the grid size to 8 pixels by 8 pixels.</p>
+  <a href="{% static 'img/BunnyWorld/texture_region.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/texture_region.png' %}" alt=""></a>
+
+  <p>Now we can easily select the first tile. I'll rename it "ground" in the Scene heirachy. It needs a collider or else the bunny can't touch it. With the "ground" node selected, click the plus sign icon to add a new "StaticBody2D" node. Make sure it's a child of the ground tile. With the "StaticBody2D" node selected, add a new "CollisionShape2D" node. It needs to be a child of the "StaticBody2D" node.</p>
+  <a href="{% static 'img/BunnyWorld/tile_collision.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/tile_collision.png' %}" alt=""></a>
+  <p>Select that StaticBody2D node. In the inspector, click the "Shape" drowdown and select a new "RectangleShape2D." In the Extents fileds, set x and y to both be 4 pixels. This will give us a square collider that perfectly fits our sprite.</p>
+  <a href="{% static 'img/BunnyWorld/tile_collision.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/tile_collision.png' %}" alt=""></a>
+
+  <p>Right click the "ground" node and "Duplicate" it. Rename the duplicate node to "empty" and select the dark purple tile. I also enabled "Pixel Snap" by clicking the magnet icon and enabling "Pixel Snap" in "Snapping Options".</p>
+  <a href="{% static 'img/BunnyWorld/grid_snap.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/grid_snap.png' %}" alt=""></a>
+
+  <p>With the move tool selected, it's now very easy to arrange our tiles. Duplicate the "empty" tile and rename it to "bricks" and then select the bricks tile in the "Texture Region." Duplicate that node and rename it to "sky" and select the solid blue tile. The sky node doesn't need collision, so be sure to delete the "StaticBody2D" that is a child of it. When you're finished, your Tiles scene should look like this:</p>
+  <a href="{% static 'img/BunnyWorld/tiles_finished.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/tiles_finished.png' %}" alt=""></a>
+
+  <p>To use the tiles in a TileMap, we need to tell Godot to convert the scene to tile data. Do this by choosing Scene -> Convert To.. -> TileSet. Create a new folder named "Other" and save the converted tiles as "tiles.tres."</p>
+  <a href="{% static 'img/BunnyWorld/convert_to_tileset.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/convert_to_tileset.png' %}" alt=""></a>
+
+  <p>That's it for the TIles scene. Returning to the World scene, we can now add a TileMap node. In the inspectory, drag our newly made "tiles.tres" file into the TileSet field of the "TileMap" node. Also change the cellsize to 8x8.</p>
+  <a href="{% static 'img/BunnyWorld/tilemap_setup.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/tilemap_setup.png' %}" alt=""></a>
+
+  <p>Let's paint some tiles! I'm going to keep it pretty basic for the sake of this tutorial, but feel free to experiment.</p>
+  <p>And if we hit the Play button in the top right of the editor (Godot will ask us to set a default scene. Choose the "World" scene) we can get a preview of the game! Pretty neat, right!</p>
+
+  <a href="{% static 'img/BunnyWorld/play_preview.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/play_preview.png' %}" alt=""></a>
+
+  <h4>Step Three: The Bunny</h4>
+
+  <p>Great! Now we are ready to start making the star of our show: the bunny! With the "World" node selected, add a new "KinematicBody2D" node. This will serve as the base node for our bunny object.</p>
+  <p>Select the "KinematicBody2D" node and add a new "CollisionShape2D" node as well as a new sprite node. Select the sprite node and drag the bunny.png file into the "Texture" field. To make sure only one frame of the image shows at a time, we need to adjust the animation fields on the sprite node. Change the "Vertical" frames to 3 and the "Horizontal Frames" to 8.</p>
+
+  <a href="{% static 'img/BunnyWorld/bunny_setup.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/bunny_setup.png' %}" alt=""></a>
+
+  <p>Rename the "KinematicBody2D" to "Bunny" and, using the Move Tool, move it to the middle of the map and place it near the ground. Next, add an AnimationPlayer as a child of the Bunny node. We'll use this to create two animations for our bunny: idle and hop.</p>
+  <a href="{% static 'img/BunnyWorld/animation_player.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/animation_player.png' %}" alt=""></a>
+  <p>Click on the Animation button in the Animation window. You can use it to create a new animation. Name it "idle." Godot can animation just about anything, but we want to animate the sprite. If you click on the Bunny sprite node, you'll see that we have little keys icons next to our fields.</p>
+  <a href="{% static 'img/BunnyWorld/move_tool_bunny.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/move_tooL_bunny.png' %}" alt=""></a>
+
+  <p>This means we can create keyframes by clicking these icons. Great! With frame 0 selected, click they key to the right of the frame field to make a new frame of animation. You'll see the image change in the animation timeline. Move the timeline cursor to 0.5 seconds and make a second frame using frame 1. Then click the loop and auto-start icons. I've highlighted them in red.</p>
+  <a href="{% static 'img/BunnyWorld/1st_frame.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/1st_frame.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/frame_2.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/frame_2.png' %}" alt=""></a>
+
+  <p>If we hit the play button now, we'll see our bunny idle on the screen. Let's create a second animation for our bunny. Name it "hop" and give it frames 8-13 and check the looping icon. Your screen should look similiar to mine.</p>
+  <a href="{% static 'img/BunnyWorld/animation_hop.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/animation_hop.png' %}" alt=""></a>
+  <a href="{% static 'img/BunnyWorld/bunny_idle_animation.gif' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/bunny_idle_animation.gif' %}" alt=""></a>
+
+  <p>Next give the bunny a collision shape by clicking on the "CollisionShape2D" node and picking "RectangleShape2D" from the dropdown in the Shape field. Set the Extents to 3x4 and make sure the sprite is lined up nicely with the collision shape.</p>
+  <a href="{% static 'img/BunnyWorld/bunny_collision.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/bunny_collision.png' %}" alt=""></a>
+
+  <p>Now we can give the Bunny a script and make it do stuff. This is the best part! With the Bunny node selected, click the new script button. Make sure to save the new file in the Scripts folder. Godot will open the new file (Bunny.gd) in its internal script editor. Here can start writing some GDScript.</p>
+  <a href="{% static 'img/BunnyWorld/script_editor.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/script_editor.png' %}" alt=""></a>
+
+  <p>The Bunny will have two states, or actions, that it can do: idle and hop. To handle this we will create a  state machine. Start by delcaring an enum to hold the two states, and then declare a variable to hold the current state. These are named "BunnyState" and "currentBunnyState". </p>
+  <p>In the "_physics_process(delta)" function, we'll create a match statement that will determine which state is executed. Then we need to create Idle(delta) and Hop(delta) functions that will control the individual states.</p>
+  <p>To switch between states, we use a timer. After the timer passes a certain delay perioud, a helper function is called (ChangeState) which resets the timer and sets currentBunnyState to the new state. Using these tools, our bunny will move around forever on its own.</p>
+  <p>We also need a reference to the AnimationPlayer. We can do this with the "onready" keyword. In the idle function, we'll tell the AnimationPlayer to play the "idle" animation we made. We can do the same in the Hop function, but play the "hop" animation instead.</p>
+  <p>I also created an Initialize() function that get's called when the Bunny enters the scene. It will add a little variation to the idle and hop times for the bunny, making each more unique. I also created a RandomizeColor() function that will randomly color the bunny by modulating the sprite node, which we grab using the "onready" keyword, just like we did with the animationPlayer.</p>
+
+  <pre class="godot-code">
+  #BUNNY
+  extends KinematicBody2D
+
+  enum BunnyState {IDLE,HOP} # possible actions or behaviors
+  var currentBunnyState = BunnyState.IDLE # current state
+
+  var bunny_color = Color.white # default color
+  var facingRight = false # a bool to hold the direction the bunny is facing
+
+  const MOTION_SPEED = 1000 # Pixels/second
+  const GRAVITY = 6
+
+  var timer = 0.0 # to control states
+  var hop_time = 2.0 # length of time to stay in the hop state
+  var idle_time = 1.0 # length of time to stay in the idle state
+
+  onready var anim = get_node("AnimationPlayer")
+  onready var sprite = get_node("Sprite")
+
+  func _ready():
+  InitializeBunny()
+
+  # give the bunny some starting values
+  func InitializeBunny():
+  idle_time += rand_range(1,2)
+  hop_time += rand_range(-0.4,1)
+
+  RandomizeColor()
+
+  if rand_range(0,10) < 5:
+    Flip()
+
+  # when the bunny spawns we'll give it a random color
+  func RandomizeColor():
+  var r = rand_range(1,10)
+  if r < 4:
+    bunny_color = Color.black
+  elif r < 7:
+    bunny_color = Color.brown
+
+  sprite.modulate = bunny_color
+
+  # the idle state will handle animation and movement
+  # because the bunny is in idle, only gravity is applied to the force
+  func Idle(delta):
+  anim.play("idle")
+  timer += delta
+
+  if timer > idle_time:
+    ChangeState(BunnyState.HOP)
+    Flip()
+
+  # this is the velocity we'll send to the kinematic body
+  var force = Vector2(0,GRAVITY) * MOTION_SPEED * delta
+  move_and_slide(force)
+
+  # a convient function for flipping the bunny around
+  func Flip():
+  facingRight = not facingRight
+  scale.x *= -1
+
+  # the hop function will move the bunny horizontally depending on the bunny's direction
+  func Hop(delta):
+  anim.play("hop")
+  timer += delta
+
+  if timer > hop_time:
+    ChangeState(BunnyState.IDLE)
+
+  else:
+    var force = Vector2.RIGHT
+    if not facingRight:
+      force = Vector2.LEFT
+    #apply gravity to the directional force and multiply by speed and deltatime
+    force = (force + Vector2(0,GRAVITY)) * MOTION_SPEED * delta
+    move_and_slide(force)
+
+  # a convient function for changing the bunny's state
+  func ChangeState(new_state):
+  currentBunnyState = new_state
+  timer = 0
+
+  # this functin is updated on each tick of the physics engine
+  # we'll use it to handle the bunnies state
+  func _physics_process(_delta):
+  match(currentBunnyState):
+    BunnyState.IDLE:
+      Idle(_delta)
+    BunnyState.HOP:
+      Hop(_delta)
+  </pre>
+
+  <p>Once your Bunny code looks like mine, you can hit the play button and watch the bunny move around the screen! Fantastic. It's a cute bunny!</p>
+
+  <h4>Step Three: The Simulation</h4>
+
+  <p>But wait, there's more! What if we want more bunnies? Let's create a new script to handle the simulation of more bunnies. Create a new Node2D under "World" and name it "Simulation." Then create a new "Position2D" node and make sure it's a child of "Simulation." Rename the Position2D node to "SpawnPoint" and move it to match the location of our bunny.</p>
+  <a href="{% static 'img/BunnyWorld/spawn_point.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/spawn_point.png' %}" alt=""></a>
+  <p>Before we can spawn any bunnies, we need to save the Bunny node as it's own scene. Right click on the bunny node and select "Save Branch As Scene" and save it in the Scenes folder.</p>
+  <a href="{% static 'img/BunnyWorld/save_branch_as_scene.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/save_branch_as_scene.png' %}" alt=""></a>
+
+  <p>Next, add a script to the Simulation node. Save it in the Scripts folder as "Simulation.gd." This script will do two things. It will create some starting bunnies to populate the scene. It will also let the player create new bunnies with the click of the mouse!</p>
+
+  <p>Let's take a closer look at how it works. First we have to load the bunny scene in script. We can do this using the “preload” keyword. Next we have a SpawnBunny() function that creates a new instance of a bunny, adds it as a child of the Simulation node, and then moves it to the given location.</p>
+  <p>In our list of variables you'll see one called "start_bunny_count." This controls how many bunnies we will create at the start of the game. It uses the "Export" keyword to open this value up to the editor, that way you can change it on the fly, right in the Inspector.</p>
+  <p>Secondly, we used the _process(delta) function in the Simulation.gd script to check for a mouse click event. If we detect a mouse click, we will spawn a bunny at the event position, which will be the location of the mouse on the screen.</p>
+
+
+    <pre class="godot-code">
+  #SIMULATION
+  extends Node2D
+
+  var bunny = preload("res://Scenes/Bunny.tscn")
+  onready var spawnPoint = get_node("SpawnPoint")
+
+  export var start_bunny_count = 5 # the number of bunnies to start with
+
+  # Called when the node enters the scene tree for the first time.
+  func _ready():
+  	for i in range(start_bunny_count):
+  		SpawnBunny(spawnPoint.position + Vector2(rand_range(-30,30),0))
+
+  func SpawnBunny(pos):
+  	var new_bunny = bunny.instance() 	# temp variable to hold the bunny instance
+  	add_child(new_bunny)
+  	new_bunny.position = pos
+
+  func _input(event):
+     # Mouse in viewport coordinates.
+     if event is InputEventMouseButton:
+  	   SpawnBunny(event.position)
+
+  </pre>
+
+  <p>Now you can create as many bunnies as you want! I hope you learned something fromt his tutorial. Please check out our games on <a href="https://brainjar.itch.io/" target="blank">Itch.io</a> and look out for more tutorials in the future. I’ve included all the project files on <a href="https://github.com/ramza/BunnyWorld" target="blank">github</a> so you can use them for reference.</p>
+  <a href="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}"><img class="img-fluid" src="{% static 'img/BunnyWorld/lots_of_bunnies.png' %}" alt=""></a>
+
+{% endblock %}

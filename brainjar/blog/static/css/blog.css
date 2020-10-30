@@ -51,7 +51,7 @@ nav {
   font-size: 1.5em;
   margin-top: 0px;
   margin-bottom: 15px;
-
+  background-color: lightblue;
 }
 
 #myCarousel {
@@ -62,7 +62,7 @@ nav {
     padding-bottom: 20px;
     background-color: white;
     color:black;
-    background: linear-gradient(to bottom, lightgreen, green);
+    background: linear-gradient(to bottom, lightgreen, lightblue);
 }
 
 
@@ -104,7 +104,7 @@ a {
 
 body {
   color: white;
-  background: linear-gradient(to bottom, lightgreen, green);
+  background: linear-gradient(to bottom, lightgreen, lightgreen);
 
 }
 

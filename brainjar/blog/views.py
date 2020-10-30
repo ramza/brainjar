@@ -39,3 +39,6 @@ class BreakOut2View(TemplateView):
 
 class GameOfLifeView(TemplateView):
     template_name = 'game-of-life.html'
+
+class BunnyWorldView(TemplateView):
+    template_name = 'bunny-world.html'
